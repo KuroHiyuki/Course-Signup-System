@@ -22,7 +22,7 @@ namespace CourseSignupSystem.Models
         public string? ScheduleId { get; set; }
         public Day ScheduleName { get; set; }
         public decimal? Duration { get; set; }
-        public TimeOnly TimeStart { get; set; }
+        public DateTime TimeStart { get; set; }
         public virtual ICollection<Class> Co_Class { get; set; }
 
     }

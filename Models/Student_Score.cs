@@ -10,5 +10,6 @@
         public bool? IsTerminal { get; set; } = false;
         public virtual User? GetUser { get; set; }
         public virtual Score? GetScore { get; set; }
+        public virtual Subject? GetSubject { get; set; }
     }
 }

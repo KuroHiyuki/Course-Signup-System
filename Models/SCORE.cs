@@ -1,4 +1,6 @@
-﻿namespace CourseSignupSystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CourseSignupSystem.Models
 {
     public class Score
     {
@@ -7,6 +9,7 @@
             Co_Subject_Score = new HashSet<Subject_Score>();
             Co_Student_Score = new HashSet<Student_Score>();
         }
+        [Key]
         public string? ScoreId { get; set; }
         public string? ScoreName { get; set; }
         public int ScoreColumn { get; set; }

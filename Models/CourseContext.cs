@@ -47,7 +47,147 @@ namespace CourseSignupSystem.Models
             {
                 Entity.ToTable("CLASS");
                 Entity.HasKey(k => k.ClassId).HasName("ClassId");
+            });
+            modelBuilder.Entity<Class_Program>(Entity =>
+            {
+                Entity.ToTable("R_Class_Program");
+                Entity.HasKey(k => new {k.ProgramId,k.ClassId});
 
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Class_Program)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Program");
+
+                Entity.HasOne(d => d.GetProgram)
+                     .WithMany(p => p.Co_Class_Prgram)
+                     .HasForeignKey(d => d.ProgramId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Program_Class");
+            });
+            modelBuilder.Entity<Class_Room>(Entity =>
+            {
+                Entity.ToTable("R_Class_Room");
+                Entity.HasKey(k => new { k.RoomId, k.ClassId });
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Class_Room)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Room");
+
+                Entity.HasOne(d => d.GetRoom)
+                     .WithMany(p => p.Co_Class_Room)
+                     .HasForeignKey(d => d.RoomId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Room_Class");
+            });
+            modelBuilder.Entity<Role_Permission>(Entity =>
+            {
+                Entity.ToTable("R_Role_Permission");
+                Entity.HasKey(k => new { k.RoleId, k.PermissionId });
+
+                Entity.HasOne(d => d.GetRole)
+                     .WithMany(p => p.Co_Role_permission)
+                     .HasForeignKey(d => d.RoleId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Role_Permission");
+
+                Entity.HasOne(d => d.GetPermission)
+                     .WithMany(p => p.Co_Role_Permission)
+                     .HasForeignKey(d => d.PermissionId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Permission_Role");
+            });
+            modelBuilder.Entity<Salary>(Entity =>
+            {
+                Entity.ToTable("R_Salary");
+                Entity.HasKey(k => new { k.UserId, k.ClassId });
+
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Salary)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_User_Salary");
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Salary)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Salary");
+            });
+            modelBuilder.Entity<Student_Class>(Entity =>
+            {
+                Entity.ToTable("R_Student_Class");
+                Entity.HasKey(k => new { k.UserId, k.ClassId });
+
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Student_Class)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Student_Class");
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Student_Class)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Student");
+            });
+            modelBuilder.Entity<Student_Score>(Entity =>
+            {
+                Entity.ToTable("R_Student_Score");
+                Entity.HasKey(k => new { k.UserId, k.SubjectId });
+
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Student_Score)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Student_Score");
+
+                Entity.HasOne(d => d.GetSubject)
+                     .WithMany(p => p.Co_Student_Score)
+                     .HasForeignKey(d => d.SubjectId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Subject_Student");
+                Entity.HasOne(d => d.GetScore)
+                     .WithMany(p => p.Co_Student_Score)
+                     .HasForeignKey(d => d.ScoreId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Score_Student");
+            });
+            modelBuilder.Entity<Subject_Score>(Entity =>
+            {
+                Entity.ToTable("R_Subject_Score");
+                Entity.HasKey(k => new { k.SubjectId, k.ScoreId });
+
+                Entity.HasOne(d => d.GetSubject)
+                     .WithMany(p => p.Co_Subject_Score)
+                     .HasForeignKey(d => d.SubjectId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Subject_Score");
+
+                Entity.HasOne(d => d.GetScore)
+                     .WithMany(p => p.Co_Subject_Score)
+                     .HasForeignKey(d => d.ScoreId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Score_Subject");
+            });
+            modelBuilder.Entity<Teacher_Class>(Entity =>
+            {
+                Entity.ToTable("R_Teacher_Class");
+                Entity.HasKey(k => new { k.UserId, k.ClassId });
+
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Teacher_Class)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Teacher_Class");
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Teacher_Class)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Teacher");
             });
         }
         #endregion

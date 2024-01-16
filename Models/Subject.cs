@@ -18,6 +18,6 @@ namespace CourseSignupSystem.Models
         public virtual Faculty? GetFaculty { get; set; }
         public virtual ICollection<Class> Co_Class { get; set; }
         public virtual ICollection<Subject_Score> Co_Subject_Score { get; set; }
-
+        public virtual ICollection<Student_Score> Co_Student_Score { get; set; }
     }
 }

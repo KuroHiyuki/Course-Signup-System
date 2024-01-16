@@ -1,4 +1,6 @@
-﻿namespace CourseSignupSystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CourseSignupSystem.Models
 {
     public class Fee
     {
@@ -6,7 +8,7 @@
         {
             Co_Class = new HashSet<Class>();
         }
-
+        [Key]
         public string? FeeId { get; set; }
         public int? FeeCost { get; set; }
         public decimal? Discount { get; set; }
