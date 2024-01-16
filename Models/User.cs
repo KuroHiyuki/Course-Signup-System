@@ -10,12 +10,12 @@ namespace CourseSignupSystem.Models
     {
         public User()
         {
-            _Salary = new HashSet<Salary>();
-            _Student = new HashSet<Student>();
-            _Student_Class = new HashSet<Student_Class>();
-            _Student_Score = new HashSet<Student_Score>();
-            _Teacher = new HashSet<Teacher>();
-            _Teacher_Class = new HashSet<Teacher_Class>();
+            Co_Salary = new HashSet<Salary>();
+            Co_Student = new HashSet<Student>();
+            Co_Student_Class = new HashSet<Student_Class>();
+            Co_Student_Score = new HashSet<Student_Score>();
+            Co_Teacher = new HashSet<Teacher>();
+            Co_Teacher_Class = new HashSet<Teacher_Class>();
         }
         [Key]
         public string? UserId { get; set; }
@@ -33,11 +33,11 @@ namespace CourseSignupSystem.Models
         public DateTime UpdateDate { get; set; } = DateTime.Now;
         public string? RoleId { get; set; }
         public virtual Role? GetRole { get; set; }
-        public virtual ICollection<Salary> _Salary { get; set; }
-        public virtual ICollection<Student> _Student { get; set; }
-        public virtual ICollection<Student_Class> _Student_Class { get; set; }
-        public virtual ICollection<Student_Score> _Student_Score { get; set; }
-        public virtual ICollection<Teacher> _Teacher { get; set; }
-        public virtual ICollection<Teacher_Class> _Teacher_Class { get; set; }
+        public virtual ICollection<Salary> Co_Salary { get; set; }
+        public virtual ICollection<Student> Co_Student { get; set; }
+        public virtual ICollection<Student_Class> Co_Student_Class { get; set; }
+        public virtual ICollection<Student_Score> Co_Student_Score { get; set; }
+        public virtual ICollection<Teacher> Co_Teacher { get; set; }
+        public virtual ICollection<Teacher_Class> Co_Teacher_Class { get; set; }
     }
 }

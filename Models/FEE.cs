@@ -4,7 +4,7 @@
     {
         public Fee() 
         {
-            _Class = new HashSet<Class>();
+            Co_Class = new HashSet<Class>();
         }
 
         public string? FeeId { get; set; }
@@ -14,7 +14,7 @@
         public DateTime UpdateDate { get; set; } = DateTime.Now;
         public string? TypeId { get; set; }
         public virtual FeeType? GetFeeType { get; set; }
-        public virtual ICollection<Class> _Class { get; set; }
+        public virtual ICollection<Class> Co_Class { get; set; }
 
     }
 }

@@ -5,12 +5,12 @@ namespace CourseSignupSystem.Models
     public class Class
     {
         public Class() 
-        { 
-            _Class_Program = new HashSet<Class_Program>();
-            _Class_Room = new HashSet<Class_Room>();
-            _Salary = new HashSet<Salary>();
-            _Class_Student = new HashSet<Student_Class>();
-            _Class_Teacher = new HashSet<Teacher_Class>();
+        {
+            Co_Class_Program = new HashSet<Class_Program>();
+            Co_Class_Room = new HashSet<Class_Room>();
+            Co_Salary = new HashSet<Salary>();
+            Co_Class_Student = new HashSet<Student_Class>();
+            Co_Class_Teacher = new HashSet<Teacher_Class>();
         }
         [Key]
         public string? ClassId { get; set; }
@@ -28,10 +28,10 @@ namespace CourseSignupSystem.Models
         public virtual Schedule? GetSchedule { get; set; }
         public virtual Fee? GetFee { get; set; }
         public virtual Subject? GetSubject { get; set; }
-        public virtual ICollection<Class_Program> _Class_Program { get; set; }
-        public virtual ICollection<Class_Room> _Class_Room { get; set; }
-        public virtual ICollection<Salary> _Salary { get; set; }
-        public virtual ICollection<Student_Class> _Class_Student { get; set; }
-        public virtual ICollection<Teacher_Class> _Class_Teacher { get; set; }
+        public virtual ICollection<Class_Program> Co_Class_Program { get; set; }
+        public virtual ICollection<Class_Room> Co_Class_Room { get; set; }
+        public virtual ICollection<Salary> Co_Salary { get; set; }
+        public virtual ICollection<Student_Class> Co_Class_Student { get; set; }
+        public virtual ICollection<Teacher_Class> Co_Class_Teacher { get; set; }
     }
 }

@@ -16,14 +16,14 @@ namespace CourseSignupSystem.Models
     {
         public Schedule() 
         {
-            _Class = new HashSet<Class>();
+            Co_Class = new HashSet<Class>();
         }
         [Key]
         public string? ScheduleId { get; set; }
         public Day ScheduleName { get; set; }
         public decimal? Duration { get; set; }
         public TimeOnly TimeStart { get; set; }
-        public virtual ICollection<Class> _Class { get; set; }
+        public virtual ICollection<Class> Co_Class { get; set; }
 
     }
 }

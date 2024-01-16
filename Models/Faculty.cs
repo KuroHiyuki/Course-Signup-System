@@ -6,7 +6,7 @@ namespace CourseSignupSystem.Models
     {
         public Faculty()
         {
-            _Subject = new HashSet<Subject>();
+            Co_Subject = new HashSet<Subject>();
         }
         [Key]
         public string? FacultyId { get; set; }
@@ -16,7 +16,7 @@ namespace CourseSignupSystem.Models
         public DateTime UpdateDate { get; set; }
         public string? DepartmentId { get; set; }
         public virtual Department? GetDepartment {  get; set; }
-        public virtual ICollection<Subject> _Subject { get; set; }
+        public virtual ICollection<Subject> Co_Subject { get; set; }
 
     }
 }

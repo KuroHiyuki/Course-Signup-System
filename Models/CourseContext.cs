@@ -20,7 +20,7 @@ namespace CourseSignupSystem.Models
         public virtual DbSet<Fee>? Fees { get; set; }
         public virtual DbSet<FeeType>? FeeTypes { get; set; }
         public virtual DbSet<Permission>? Permissions { get; set; }
-        public virtual DbSet<Program>? Programs { get; set; }
+        public virtual DbSet<Programs>? Programs { get; set; }
         public virtual DbSet<Role>? Roles { get; set; }
         public virtual DbSet<Role_Permission>? Role_Permissions { get; set; }
         public virtual DbSet<Room>? Rooms { get; set; }
