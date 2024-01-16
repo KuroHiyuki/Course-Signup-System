@@ -20,6 +20,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Image\" />
+    <Folder Include="Profiles\Input\" />
+    <Folder Include="Profiles\Output\" />
+    <Folder Include="Services\Authurization\" />
+    <Folder Include="Services\Search\" />
   </ItemGroup>
 
 </Project>

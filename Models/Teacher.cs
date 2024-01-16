@@ -9,5 +9,6 @@ namespace CourseSignupSystem.Models
         public string? TaxCode { get; set; }
         public string? MainSubject { get; set; }
         public string? SubSubject { get; set; }
+        public virtual User? GetUser { get; set; }
     }
 }
