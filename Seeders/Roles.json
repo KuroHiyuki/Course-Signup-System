@@ -1,0 +1,32 @@
+﻿[
+  {
+    "RoleId": "HV01",
+    "RoleName": "Học viên",
+    "IsAdmin": false
+  },
+  {
+    "RoleId": "GV01",
+    "RoleName": "Giáo viên",
+    "IsAdmin": false
+  },
+  {
+    "RoleId": "QTV01",
+    "RoleName": "Quản trị viên",
+    "IsAdmin": true
+  },
+  {
+    "RoleId": "QTV02",
+    "RoleName": "Bộ phân Kế Toán",
+    "IsAdmin": true
+  },
+  {
+    "RoleId": "QTV03",
+    "RoleName": "Ban giám đốc",
+    "IsAdmin": true
+  },
+  {
+    "RoleId": "QTV04",
+    "RoleName": "Bộ phân ghi danh",
+    "IsAdmin": true
+  }
+]

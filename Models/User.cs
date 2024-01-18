@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CourseSignupSystem.Enumerables;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourseSignupSystem.Models
 {
-    public enum Sex
-    {
-        Nonbinary = 0, Male = 1,Female = 2,
-    }
     public class User
     {
         public User()

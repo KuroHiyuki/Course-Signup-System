@@ -2,14 +2,21 @@
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using System;
+using CourseSignupSystem.Models;
+using System.Text.Json;
+using System.Xml;
+using Microsoft.Extensions.Configuration;
 
-namespace CourseSignupSystem.Models
+namespace CourseSignupSystem.ContextData
 {
-    public class CourseContext:DbContext
+    public class CourseContext : DbContext
     {
-        public CourseContext(DbContextOptions<CourseContext> options)
+        private readonly IConfiguration _configuration;
+
+        public CourseContext(DbContextOptions<CourseContext> options, IConfiguration configuration)
             : base(options)
         {
+            _configuration = configuration;
         }
         #region Dbcontext Enities
         public virtual DbSet<Class>? Classes { get; set; }
@@ -42,6 +49,11 @@ namespace CourseSignupSystem.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            var seederPath = _configuration.GetValue<string>("SeederPath");
+            var jsonData = System.IO.File.ReadAllText($"{seederPath}Seeders\\Roles.json");
+            //var jsonData = System.IO.File.ReadAllText("C:\\Disk C\\Skill\\Coding\\Dot NET\\CourseSignupSystem\\Seeders\\Roles.json");
+            //var jsonData = System.IO.File.ReadAllText(Path.Combine(seederPath, "Roles.json"));
+            var roleJson = JsonSerializer.Deserialize<List<Role>>(jsonData);
 
             modelBuilder.Entity<Class>(Entity =>
             {
@@ -51,7 +63,7 @@ namespace CourseSignupSystem.Models
             modelBuilder.Entity<Class_Program>(Entity =>
             {
                 Entity.ToTable("R_Class_Program");
-                Entity.HasKey(k => new {k.ProgramId,k.ClassId});
+                Entity.HasKey(k => new { k.ProgramId, k.ClassId });
 
                 Entity.HasOne(d => d.GetClass)
                      .WithMany(p => p.Co_Class_Program)
@@ -189,8 +201,25 @@ namespace CourseSignupSystem.Models
                      .OnDelete(DeleteBehavior.ClientSetNull)
                      .HasConstraintName("FK_Class_Teacher");
             });
+            modelBuilder.Entity<Student>(Entity =>
+            {
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Student)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Student");
+            });
+            modelBuilder.Entity<Teacher>(Entity =>
+            {
+                Entity.HasOne(d => d.GetUser)
+                     .WithMany(p => p.Co_Teacher)
+                     .HasForeignKey(d => d.UserId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Teacher");
+            });
+
+            modelBuilder.Entity<Role>().HasData(roleJson!);
         }
         #endregion
-
     }
 }
