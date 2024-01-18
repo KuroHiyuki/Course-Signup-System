@@ -5,6 +5,6 @@
 /CourseSignupSystem.csproj
 /bin
 /.vs
-/Upload/ *.png
+ *.png
 /obj
 *.log
