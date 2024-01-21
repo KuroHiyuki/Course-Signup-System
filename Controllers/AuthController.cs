@@ -27,7 +27,7 @@ namespace CourseSignupSystem.Controllers
             }
             catch (Exception ex)
             {
-                return Unauthorized(ex);
+                return Unauthorized(ex.Message);
             }
         }
 
@@ -42,7 +42,7 @@ namespace CourseSignupSystem.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return BadRequest(ex.Message);
             }
 
         }

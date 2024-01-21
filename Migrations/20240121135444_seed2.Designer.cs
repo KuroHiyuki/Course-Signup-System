@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSignupSystem.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    [Migration("20240118084251_FKa")]
-    partial class FKa
+    [Migration("20240121135444_seed2")]
+    partial class seed2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,12 +207,475 @@ namespace CourseSignupSystem.Migrations
                     b.Property<string>("PermissionId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Module")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PermissionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubItem")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PermissionId");
 
                     b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            PermissionId = "1.1",
+                            Module = "Authentication",
+                            PermissionName = "Đăng nhập bằng tài khoản quản trị",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "1.2",
+                            Module = "Authentication",
+                            PermissionName = "Đăng nhập bằng tài khoản giảng viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "1.3",
+                            Module = "Authentication",
+                            PermissionName = "Đăng nhập bằng tài khoản học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "1.4",
+                            Module = "Authentication",
+                            PermissionName = "Đăng xuất",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "1.5",
+                            Module = "Authentication",
+                            PermissionName = "Khôi phục mật khẩu",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.1",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Xem danh sách học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.2",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Thêm học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.3",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Đăng ký ghi danh",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.4",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Xem danh sách lớp của học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.5",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Xem thời khoá biểu của học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.6",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Chỉnh sửa thông tin học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "2.7",
+                            Module = "Quản lý học viên",
+                            PermissionName = "Xoá học viên",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "3.1",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Xem danh sách giản viên",
+                            SubItem = "Quản lý danh sách giảng viên"
+                        },
+                        new
+                        {
+                            PermissionId = "3.2",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Thêm giảng viên",
+                            SubItem = "Quản lý danh sách giảng viên"
+                        },
+                        new
+                        {
+                            PermissionId = "3.3",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Xem lịch giảng dạy của giảng viên",
+                            SubItem = "Quản lý danh sách giảng viên"
+                        },
+                        new
+                        {
+                            PermissionId = "3.4",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Chỉnh sửa thông tin giảng viên",
+                            SubItem = "Quản lý danh sách giảng viên"
+                        },
+                        new
+                        {
+                            PermissionId = "3.5",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Xoá giảng viên",
+                            SubItem = "Quản lý danh sách giảng viên"
+                        },
+                        new
+                        {
+                            PermissionId = "3.6",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Xem danh sách phân công giảng dạy",
+                            SubItem = "Phân công giảng dạy"
+                        },
+                        new
+                        {
+                            PermissionId = "3.7",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Thêm lịch giảng dạy cho giảng viên",
+                            SubItem = "Phân công giảng dạy"
+                        },
+                        new
+                        {
+                            PermissionId = "3.8",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Cập nhật lịch giảng dạy cho giảng viên",
+                            SubItem = "Phân công giảng dạy"
+                        },
+                        new
+                        {
+                            PermissionId = "3.9",
+                            Module = "Quản lý giảng viên",
+                            PermissionName = "Xoá lịch giảng dạy",
+                            SubItem = "Phân công giảng dạy"
+                        },
+                        new
+                        {
+                            PermissionId = "4.1",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách niên khoá",
+                            SubItem = "Quản lý niên khoá"
+                        },
+                        new
+                        {
+                            PermissionId = "4.2",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "chỉnh sửa thông tin niên khoá",
+                            SubItem = "Quản lý niên khoá"
+                        },
+                        new
+                        {
+                            PermissionId = "4.3",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "xoá niên khoá",
+                            SubItem = "Quản lý niên khoá"
+                        },
+                        new
+                        {
+                            PermissionId = "4.4",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách khoa/khối",
+                            SubItem = "Quản lý khoa/khối"
+                        },
+                        new
+                        {
+                            PermissionId = "4.5",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm khoa/khối",
+                            SubItem = "Quản lý khoa/khối"
+                        },
+                        new
+                        {
+                            PermissionId = "4.6",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh sửa thông tin khoa/khối",
+                            SubItem = "Quản lý khoa/khối"
+                        },
+                        new
+                        {
+                            PermissionId = "4.7",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá khoa/khối",
+                            SubItem = "Quản lý khoa/khối"
+                        },
+                        new
+                        {
+                            PermissionId = "4.8",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách Tổ bộ môn",
+                            SubItem = "Quản lý tổ bộ môn"
+                        },
+                        new
+                        {
+                            PermissionId = "4.9",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm Tổ bộ môn",
+                            SubItem = "Quản lý tổ bộ môn"
+                        },
+                        new
+                        {
+                            PermissionId = "4.10",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh  sửa thông tin Tổ bộ môn",
+                            SubItem = "Quản lý tổ bộ môn"
+                        },
+                        new
+                        {
+                            PermissionId = "4.11",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá Tổ bộ môn",
+                            SubItem = "Quản lý tổ bộ môn"
+                        },
+                        new
+                        {
+                            PermissionId = "4.12",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách môn học",
+                            SubItem = "Quản lý môn học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.13",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm môn học",
+                            SubItem = "Quản lý môn học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.14",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh sửa thông tin môn học",
+                            SubItem = "Quản lý môn học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.15",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá môn học",
+                            SubItem = "Quản lý môn học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.16",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.17",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.18",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh sửa thông tin lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.19",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Vào điểm cho lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.20",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem bảng điểm của lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.21",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách học viên của lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.22",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách môn của lớp học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.23",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá môn học",
+                            SubItem = "Quản lý lớp học"
+                        },
+                        new
+                        {
+                            PermissionId = "4.24",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách loại điểm theo môn học",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.25",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm loại điểm cho môn học",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.26",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh sửa loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.27",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.28",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xem danh sách loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.29",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Thêm loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.30",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Chỉnh sửa thông tin loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "4.31",
+                            Module = "Quản lý đào tạo",
+                            PermissionName = "Xoá loại điểm",
+                            SubItem = "Quản lý loại điểm"
+                        },
+                        new
+                        {
+                            PermissionId = "5.1",
+                            Module = "Quản lý lịch nghỉ",
+                            PermissionName = "Xem danh sách lịch nghỉ",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "5.2",
+                            Module = "Quản lý lịch nghỉ",
+                            PermissionName = "Thêm lịch nghỉ",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "5.3",
+                            Module = "Quản lý lịch nghỉ",
+                            PermissionName = "Chỉnh sủa thông tin lịch nghỉ",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "5.4",
+                            Module = "Quản lý lịch nghỉ",
+                            PermissionName = "Xoá lịch nghỉ",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "6.1",
+                            Module = "Quản lý doanh thu",
+                            PermissionName = "N/A",
+                            SubItem = "N/A"
+                        },
+                        new
+                        {
+                            PermissionId = "7.1",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Xem danh sách người dùng quản trị",
+                            SubItem = "Quản lý người dùng"
+                        },
+                        new
+                        {
+                            PermissionId = "7.2",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Thêm người dùng quản trị",
+                            SubItem = "Quản lý người dùng"
+                        },
+                        new
+                        {
+                            PermissionId = "7.3",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Chỉnh sửa thông tin người dùng quản trị",
+                            SubItem = "Quản lý người dùng"
+                        },
+                        new
+                        {
+                            PermissionId = "7.4",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Xoá người dùng quản trị",
+                            SubItem = "Quản lý người dùng"
+                        },
+                        new
+                        {
+                            PermissionId = "7.5",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Cập nhật phân quyền của người dùng quản trị",
+                            SubItem = "Quản lý người dùng"
+                        },
+                        new
+                        {
+                            PermissionId = "7.6",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Xem danh sách vai trò",
+                            SubItem = "Quản lý phân quyền thêo vai trò"
+                        },
+                        new
+                        {
+                            PermissionId = "7.7",
+                            Module = "Quản lý phân quyền",
+                            PermissionName = "Cập nhật phân quyeèn trên vai trò",
+                            SubItem = "Quản lý phân quyền thêo vai trò"
+                        },
+                        new
+                        {
+                            PermissionId = "8.1",
+                            Module = "Hỗ trợ",
+                            PermissionName = "Gửi tin nhắn liên hệ",
+                            SubItem = "Gửi tin nhắn"
+                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Programs", b =>
@@ -602,6 +1065,24 @@ namespace CourseSignupSystem.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "ADMIN0001",
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 1, 21, 20, 54, 44, 53, DateTimeKind.Local).AddTicks(9042),
+                            Email = "Admin@gmail.com",
+                            FirstName = "Quản trị viên",
+                            Image = "",
+                            LastName = "Tester",
+                            NumberPhone = "0798222837",
+                            RoleId = "QTV01",
+                            Sex = 1,
+                            UpdateDate = new DateTime(2024, 1, 21, 20, 54, 44, 53, DateTimeKind.Local).AddTicks(9054),
+                            UserName = "Admin",
+                            UserPassword = "Admin01"
+                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Vaction", b =>

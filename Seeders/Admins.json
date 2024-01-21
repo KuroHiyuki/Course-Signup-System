@@ -1,0 +1,14 @@
+﻿[
+  {
+    "UserId": "ADMIN0001",
+    "UserName": "Admin",
+    "UserPassword": "Admin01",
+    "FirstName": "Quản trị viên",
+    "LastName": "Tester",
+    "Image": "",
+    "Email": "Admin@gmail.com",
+    "NumberPhone": "0798222837",
+    "Sex": 1,
+    "RoleId": "QTV01"
+  }
+]

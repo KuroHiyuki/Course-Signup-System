@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CourseSignupSystem.Migrations
 {
-    public partial class seedertesting : Migration
+    public partial class SeederAdd1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,9 @@ namespace CourseSignupSystem.Migrations
                 columns: table => new
                 {
                     PermissionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PermissionName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PermissionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Module = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubItem = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -502,6 +504,85 @@ namespace CourseSignupSystem.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Permissions",
+                columns: new[] { "PermissionId", "Module", "PermissionName", "SubItem" },
+                values: new object[,]
+                {
+                    { "1.1", "Authentication", "Đăng nhập bằng tài khoản quản trị", "N/A" },
+                    { "1.2", "Authentication", "Đăng nhập bằng tài khoản giảng viên", "N/A" },
+                    { "1.3", "Authentication", "Đăng nhập bằng tài khoản học viên", "N/A" },
+                    { "1.4", "Authentication", "Đăng xuất", "N/A" },
+                    { "1.5", "Authentication", "Khôi phục mật khẩu", "N/A" },
+                    { "2.1", "Quản lý học viên", "Xem danh sách học viên", "N/A" },
+                    { "2.2", "Quản lý học viên", "Thêm học viên", "N/A" },
+                    { "2.3", "Quản lý học viên", "Đăng ký ghi danh", "N/A" },
+                    { "2.4", "Quản lý học viên", "Xem danh sách lớp của học viên", "N/A" },
+                    { "2.5", "Quản lý học viên", "Xem thời khoá biểu của học viên", "N/A" },
+                    { "2.6", "Quản lý học viên", "Chỉnh sửa thông tin học viên", "N/A" },
+                    { "2.7", "Quản lý học viên", "Xoá học viên", "N/A" },
+                    { "3.1", "Quản lý giảng viên", "Xem danh sách giản viên", "Quản lý danh sách giảng viên" },
+                    { "3.2", "Quản lý giảng viên", "Thêm giảng viên", "Quản lý danh sách giảng viên" },
+                    { "3.3", "Quản lý giảng viên", "Xem lịch giảng dạy của giảng viên", "Quản lý danh sách giảng viên" },
+                    { "3.4", "Quản lý giảng viên", "Chỉnh sửa thông tin giảng viên", "Quản lý danh sách giảng viên" },
+                    { "3.5", "Quản lý giảng viên", "Xoá giảng viên", "Quản lý danh sách giảng viên" },
+                    { "3.6", "Quản lý giảng viên", "Xem danh sách phân công giảng dạy", "Phân công giảng dạy" },
+                    { "3.7", "Quản lý giảng viên", "Thêm lịch giảng dạy cho giảng viên", "Phân công giảng dạy" },
+                    { "3.8", "Quản lý giảng viên", "Cập nhật lịch giảng dạy cho giảng viên", "Phân công giảng dạy" },
+                    { "3.9", "Quản lý giảng viên", "Xoá lịch giảng dạy", "Phân công giảng dạy" },
+                    { "4.1", "Quản lý đào tạo", "Xem danh sách niên khoá", "Quản lý niên khoá" },
+                    { "4.10", "Quản lý đào tạo", "Chỉnh  sửa thông tin Tổ bộ môn", "Quản lý tổ bộ môn" },
+                    { "4.11", "Quản lý đào tạo", "Xoá Tổ bộ môn", "Quản lý tổ bộ môn" },
+                    { "4.12", "Quản lý đào tạo", "Xem danh sách môn học", "Quản lý môn học" },
+                    { "4.13", "Quản lý đào tạo", "Thêm môn học", "Quản lý môn học" },
+                    { "4.14", "Quản lý đào tạo", "Chỉnh sửa thông tin môn học", "Quản lý môn học" },
+                    { "4.15", "Quản lý đào tạo", "Xoá môn học", "Quản lý môn học" },
+                    { "4.16", "Quản lý đào tạo", "Xem danh sách lớp học", "Quản lý lớp học" },
+                    { "4.17", "Quản lý đào tạo", "Thêm lớp học", "Quản lý lớp học" },
+                    { "4.18", "Quản lý đào tạo", "Chỉnh sửa thông tin lớp học", "Quản lý lớp học" },
+                    { "4.19", "Quản lý đào tạo", "Vào điểm cho lớp học", "Quản lý lớp học" },
+                    { "4.2", "Quản lý đào tạo", "chỉnh sửa thông tin niên khoá", "Quản lý niên khoá" },
+                    { "4.20", "Quản lý đào tạo", "Xem bảng điểm của lớp học", "Quản lý lớp học" },
+                    { "4.21", "Quản lý đào tạo", "Xem danh sách học viên của lớp học", "Quản lý lớp học" },
+                    { "4.22", "Quản lý đào tạo", "Xem danh sách môn của lớp học", "Quản lý lớp học" },
+                    { "4.23", "Quản lý đào tạo", "Xoá môn học", "Quản lý lớp học" },
+                    { "4.24", "Quản lý đào tạo", "Xem danh sách loại điểm theo môn học", "Quản lý loại điểm" },
+                    { "4.25", "Quản lý đào tạo", "Thêm loại điểm cho môn học", "Quản lý loại điểm" },
+                    { "4.26", "Quản lý đào tạo", "Chỉnh sửa loại điểm", "Quản lý loại điểm" },
+                    { "4.27", "Quản lý đào tạo", "Xoá loại điểm", "Quản lý loại điểm" },
+                    { "4.28", "Quản lý đào tạo", "Xem danh sách loại điểm", "Quản lý loại điểm" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Permissions",
+                columns: new[] { "PermissionId", "Module", "PermissionName", "SubItem" },
+                values: new object[,]
+                {
+                    { "4.29", "Quản lý đào tạo", "Thêm loại điểm", "Quản lý loại điểm" },
+                    { "4.3", "Quản lý đào tạo", "xoá niên khoá", "Quản lý niên khoá" },
+                    { "4.30", "Quản lý đào tạo", "Chỉnh sửa thông tin loại điểm", "Quản lý loại điểm" },
+                    { "4.31", "Quản lý đào tạo", "Xoá loại điểm", "Quản lý loại điểm" },
+                    { "4.4", "Quản lý đào tạo", "Xem danh sách khoa/khối", "Quản lý khoa/khối" },
+                    { "4.5", "Quản lý đào tạo", "Thêm khoa/khối", "Quản lý khoa/khối" },
+                    { "4.6", "Quản lý đào tạo", "Chỉnh sửa thông tin khoa/khối", "Quản lý khoa/khối" },
+                    { "4.7", "Quản lý đào tạo", "Xoá khoa/khối", "Quản lý khoa/khối" },
+                    { "4.8", "Quản lý đào tạo", "Xem danh sách Tổ bộ môn", "Quản lý tổ bộ môn" },
+                    { "4.9", "Quản lý đào tạo", "Thêm Tổ bộ môn", "Quản lý tổ bộ môn" },
+                    { "5.1", "Quản lý lịch nghỉ", "Xem danh sách lịch nghỉ", "N/A" },
+                    { "5.2", "Quản lý lịch nghỉ", "Thêm lịch nghỉ", "N/A" },
+                    { "5.3", "Quản lý lịch nghỉ", "Chỉnh sủa thông tin lịch nghỉ", "N/A" },
+                    { "5.4", "Quản lý lịch nghỉ", "Xoá lịch nghỉ", "N/A" },
+                    { "6.1", "Quản lý doanh thu", "N/A", "N/A" },
+                    { "7.1", "Quản lý phân quyền", "Xem danh sách người dùng quản trị", "Quản lý người dùng" },
+                    { "7.2", "Quản lý phân quyền", "Thêm người dùng quản trị", "Quản lý người dùng" },
+                    { "7.3", "Quản lý phân quyền", "Chỉnh sửa thông tin người dùng quản trị", "Quản lý người dùng" },
+                    { "7.4", "Quản lý phân quyền", "Xoá người dùng quản trị", "Quản lý người dùng" },
+                    { "7.5", "Quản lý phân quyền", "Cập nhật phân quyền của người dùng quản trị", "Quản lý người dùng" },
+                    { "7.6", "Quản lý phân quyền", "Xem danh sách vai trò", "Quản lý phân quyền thêo vai trò" },
+                    { "7.7", "Quản lý phân quyền", "Cập nhật phân quyeèn trên vai trò", "Quản lý phân quyền thêo vai trò" },
+                    { "8.1", "Hỗ trợ", "Gửi tin nhắn liên hệ", "Gửi tin nhắn" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "RoleId", "IsAdmin", "RoleName" },
                 values: new object[,]
@@ -513,6 +594,11 @@ namespace CourseSignupSystem.Migrations
                     { "QTV03", true, "Ban giám đốc" },
                     { "QTV04", true, "Bộ phân ghi danh" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Address", "BirthDate", "CreatedDate", "Email", "FirstName", "Image", "LastName", "NumberPhone", "RoleId", "Sex", "UpdateDate", "UserName", "UserPassword" },
+                values: new object[] { "ADMIN0001", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 21, 20, 46, 34, 245, DateTimeKind.Local).AddTicks(3198), "Admin@gmail.com", "Quản trị viên", "", "Tester", "0798222837", "QTV01", 1, new DateTime(2024, 1, 21, 20, 46, 34, 245, DateTimeKind.Local).AddTicks(3208), "Admin", "Admin01" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CLASS_FeeId",

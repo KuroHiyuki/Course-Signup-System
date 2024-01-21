@@ -49,12 +49,25 @@ namespace CourseSignupSystem.ContextData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            #region Add Seeder
             var seederPath = _configuration.GetValue<string>("SeederPath");
-            var jsonData = System.IO.File.ReadAllText($"{seederPath}Seeders\\Roles.json");
-            //var jsonData = System.IO.File.ReadAllText("C:\\Disk C\\Skill\\Coding\\Dot NET\\CourseSignupSystem\\Seeders\\Roles.json");
-            //var jsonData = System.IO.File.ReadAllText(Path.Combine(seederPath, "Roles.json"));
-            var roleJson = JsonSerializer.Deserialize<List<Role>>(jsonData);
 
+            var jsonData = System.IO.File.ReadAllText($"{seederPath}Seeders\\Roles.json");
+            var roleJson = JsonSerializer.Deserialize<List<Role>>(jsonData);
+            modelBuilder.Entity<Role>().HasData(roleJson!);
+
+            var jsonData2 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Admins.json");
+            var adminJson = JsonSerializer.Deserialize<List<User>>(jsonData2);
+            modelBuilder.Entity<User>().HasData(adminJson!);
+
+            var jsonData3 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Permissions.json");
+            var permissionJson = JsonSerializer.Deserialize<List<Permission>>(jsonData3);
+            modelBuilder.Entity<Permission>().HasData(permissionJson!);
+
+            var jsonData4 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Role_Permissions.json");
+            var rolePermissionJson = JsonSerializer.Deserialize<List<Role_Permission>>(jsonData4);
+            modelBuilder.Entity<Role_Permission>().HasData(rolePermissionJson!);
+#endregion
             modelBuilder.Entity<Class>(Entity =>
             {
                 Entity.ToTable("CLASS");
@@ -218,7 +231,7 @@ namespace CourseSignupSystem.ContextData
                      .HasConstraintName("FK_Teacher");
             });
 
-            modelBuilder.Entity<Role>().HasData(roleJson!);
+            
         }
         #endregion
     }

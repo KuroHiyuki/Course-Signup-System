@@ -1,0 +1,392 @@
+﻿[
+  {
+    "PermissionId": "1.1",
+    "PermissionName": "Đăng nhập bằng tài khoản quản trị",
+    "Module": "Authentication",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "1.2",
+    "PermissionName": "Đăng nhập bằng tài khoản giảng viên",
+    "Module": "Authentication",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "1.3",
+    "PermissionName": "Đăng nhập bằng tài khoản học viên",
+    "Module": "Authentication",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "1.4",
+    "PermissionName": "Đăng xuất",
+    "Module": "Authentication",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "1.5",
+    "PermissionName": "Khôi phục mật khẩu",
+    "Module": "Authentication",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.1",
+    "PermissionName": "Xem danh sách học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.2",
+    "PermissionName": "Thêm học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.3",
+    "PermissionName": "Đăng ký ghi danh",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.4",
+    "PermissionName": "Xem danh sách lớp của học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.5",
+    "PermissionName": "Xem thời khoá biểu của học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.6",
+    "PermissionName": "Chỉnh sửa thông tin học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "2.7",
+    "PermissionName": "Xoá học viên",
+    "Module": "Quản lý học viên",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "3.1",
+    "PermissionName": "Xem danh sách giản viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Quản lý danh sách giảng viên"
+  },
+  {
+    "PermissionId": "3.2",
+    "PermissionName": "Thêm giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Quản lý danh sách giảng viên"
+  },
+  {
+    "PermissionId": "3.3",
+    "PermissionName": "Xem lịch giảng dạy của giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Quản lý danh sách giảng viên"
+  },
+  {
+    "PermissionId": "3.4",
+    "PermissionName": "Chỉnh sửa thông tin giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Quản lý danh sách giảng viên"
+  },
+  {
+    "PermissionId": "3.5",
+    "PermissionName": "Xoá giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Quản lý danh sách giảng viên"
+  },
+  {
+    "PermissionId": "3.6",
+    "PermissionName": "Xem danh sách phân công giảng dạy",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Phân công giảng dạy"
+  },
+  {
+    "PermissionId": "3.7",
+    "PermissionName": "Thêm lịch giảng dạy cho giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Phân công giảng dạy"
+  },
+  {
+    "PermissionId": "3.8",
+    "PermissionName": "Cập nhật lịch giảng dạy cho giảng viên",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Phân công giảng dạy"
+  },
+  {
+    "PermissionId": "3.9",
+    "PermissionName": "Xoá lịch giảng dạy",
+    "Module": "Quản lý giảng viên",
+    "SubItem": "Phân công giảng dạy"
+  },
+  {
+    "PermissionId": "4.1",
+    "PermissionName": "Xem danh sách niên khoá",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý niên khoá"
+  },
+  {
+    "PermissionId": "4.2",
+    "PermissionName": "chỉnh sửa thông tin niên khoá",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý niên khoá"
+  },
+  {
+    "PermissionId": "4.3",
+    "PermissionName": "xoá niên khoá",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý niên khoá"
+  },
+  {
+    "PermissionId": "4.4",
+    "PermissionName": "Xem danh sách khoa/khối",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý khoa/khối"
+  },
+  {
+    "PermissionId": "4.5",
+    "PermissionName": "Thêm khoa/khối",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý khoa/khối"
+  },
+  {
+    "PermissionId": "4.6",
+    "PermissionName": "Chỉnh sửa thông tin khoa/khối",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý khoa/khối"
+  },
+  {
+    "PermissionId": "4.7",
+    "PermissionName": "Xoá khoa/khối",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý khoa/khối"
+  },
+  {
+    "PermissionId": "4.8",
+    "PermissionName": "Xem danh sách Tổ bộ môn",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý tổ bộ môn"
+  },
+  {
+    "PermissionId": "4.9",
+    "PermissionName": "Thêm Tổ bộ môn",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý tổ bộ môn"
+  },
+  {
+    "PermissionId": "4.10",
+    "PermissionName": "Chỉnh  sửa thông tin Tổ bộ môn",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý tổ bộ môn"
+  },
+  {
+    "PermissionId": "4.11",
+    "PermissionName": "Xoá Tổ bộ môn",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý tổ bộ môn"
+  },
+  {
+    "PermissionId": "4.12",
+    "PermissionName": "Xem danh sách môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý môn học"
+  },
+  {
+    "PermissionId": "4.13",
+    "PermissionName": "Thêm môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý môn học"
+  },
+  {
+    "PermissionId": "4.14",
+    "PermissionName": "Chỉnh sửa thông tin môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý môn học"
+  },
+  {
+    "PermissionId": "4.15",
+    "PermissionName": "Xoá môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý môn học"
+  },
+  {
+    "PermissionId": "4.16",
+    "PermissionName": "Xem danh sách lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.17",
+    "PermissionName": "Thêm lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.18",
+    "PermissionName": "Chỉnh sửa thông tin lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.19",
+    "PermissionName": "Vào điểm cho lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.20",
+    "PermissionName": "Xem bảng điểm của lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.21",
+    "PermissionName": "Xem danh sách học viên của lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.22",
+    "PermissionName": "Xem danh sách môn của lớp học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.23",
+    "PermissionName": "Xoá môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý lớp học"
+  },
+  {
+    "PermissionId": "4.24",
+    "PermissionName": "Xem danh sách loại điểm theo môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.25",
+    "PermissionName": "Thêm loại điểm cho môn học",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.26",
+    "PermissionName": "Chỉnh sửa loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.27",
+    "PermissionName": "Xoá loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.28",
+    "PermissionName": "Xem danh sách loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.29",
+    "PermissionName": "Thêm loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.30",
+    "PermissionName": "Chỉnh sửa thông tin loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "4.31",
+    "PermissionName": "Xoá loại điểm",
+    "Module": "Quản lý đào tạo",
+    "SubItem": "Quản lý loại điểm"
+  },
+  {
+    "PermissionId": "5.1",
+    "PermissionName": "Xem danh sách lịch nghỉ",
+    "Module": "Quản lý lịch nghỉ",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "5.2",
+    "PermissionName": "Thêm lịch nghỉ",
+    "Module": "Quản lý lịch nghỉ",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "5.3",
+    "PermissionName": "Chỉnh sủa thông tin lịch nghỉ",
+    "Module": "Quản lý lịch nghỉ",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "5.4",
+    "PermissionName": "Xoá lịch nghỉ",
+    "Module": "Quản lý lịch nghỉ",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "6.1",
+    "PermissionName": "N/A",
+    "Module": "Quản lý doanh thu",
+    "SubItem": "N/A"
+  },
+  {
+    "PermissionId": "7.1",
+    "PermissionName": "Xem danh sách người dùng quản trị",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý người dùng"
+  },
+  {
+    "PermissionId": "7.2",
+    "PermissionName": "Thêm người dùng quản trị",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý người dùng"
+  },
+  {
+    "PermissionId": "7.3",
+    "PermissionName": "Chỉnh sửa thông tin người dùng quản trị",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý người dùng"
+  },
+  {
+    "PermissionId": "7.4",
+    "PermissionName": "Xoá người dùng quản trị",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý người dùng"
+  },
+  {
+    "PermissionId": "7.5",
+    "PermissionName": "Cập nhật phân quyền của người dùng quản trị",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý người dùng"
+  },
+  {
+    "PermissionId": "7.6",
+    "PermissionName": "Xem danh sách vai trò",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý phân quyền thêo vai trò"
+  },
+  {
+    "PermissionId": "7.7",
+    "PermissionName": "Cập nhật phân quyeèn trên vai trò",
+    "Module": "Quản lý phân quyền",
+    "SubItem": "Quản lý phân quyền thêo vai trò"
+  },
+  {
+    "PermissionId": "8.1",
+    "PermissionName": "Gửi tin nhắn liên hệ",
+    "Module": "Hỗ trợ",
+    "SubItem": "Gửi tin nhắn"
+  }
+]

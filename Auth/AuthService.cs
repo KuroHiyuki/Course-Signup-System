@@ -38,17 +38,13 @@ namespace CourseSignupSystem.Auth
             {
                 if(user.UserPassword != model.Password) { throw new Exception(); }
             }
-
+            var role = await _context.Roles!.FindAsync(user.RoleId);
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,model.Username!),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, role!.RoleName!)
             };
-            //var userRoles = await _context.GetRolesAsync(user);
-            //foreach (var role in userRoles)
-            //{
-            //    authClaims.Add(new Claim(ClaimTypes.Role, role.ToString()));
-            //}
 
             var authenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]));
 
@@ -61,14 +57,14 @@ namespace CourseSignupSystem.Auth
             );
             res.UserName = model.Username;
             res.JWT_Token = new JwtSecurityTokenHandler().WriteToken(token);
-            res.Role = "Administator";
+            res.Role = role.RoleName!;
 
             return new List<ResUserData> { res };
         }
 
         public async Task SignUpAsync(ReqSignUp model)
         {
-            var role = await _context.Roles!.FirstOrDefaultAsync(dt => dt.RoleName == "Student");
+            var role = await _context.Roles!.FirstOrDefaultAsync(dt => dt.RoleName == "Học viên");
             var user = _mapper.Map<User>(model);
             user.UserId = Guid.NewGuid().ToString();
             user.UserName = model.Email;

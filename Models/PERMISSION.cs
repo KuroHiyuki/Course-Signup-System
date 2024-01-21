@@ -11,6 +11,8 @@ namespace CourseSignupSystem.Models
         [Key]
         public string? PermissionId { get; set; }
         public string? PermissionName { get; set;}
+        public string? Module { get; set;}
+        public string? SubItem { get; set; }
         public virtual ICollection<Role_Permission> Co_Role_Permission { get; set; }
 
     }
