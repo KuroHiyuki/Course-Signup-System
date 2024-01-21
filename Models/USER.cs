@@ -1,5 +1,6 @@
 ﻿using CourseSignupSystem.Enumerables;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CourseSignupSystem.Models
 {
@@ -16,11 +17,13 @@ namespace CourseSignupSystem.Models
         }
         [Key]
         public string? UserId { get; set; }
+        [NotNull]
         public string? UserName { get; set;}
         public string? UserPassword { get; set;}
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Image {  get; set; }
+        [NotNull,EmailAddress]
         public string? Email { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -28,6 +31,8 @@ namespace CourseSignupSystem.Models
         public string? NumberPhone { get; set; }
         public Sex Sex { get; set; } = Sex.Nonbinary;
         public DateTime UpdateDate { get; set; } = DateTime.Now;
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiration { get; set; }
         public string? RoleId { get; set; }
         public virtual Role? GetRole { get; set; }
         public virtual ICollection<Salary> Co_Salary { get; set; }

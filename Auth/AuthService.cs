@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
+using CourseSignupSystem.Auth.ForgotPassword;
 using CourseSignupSystem.Auth.SignIn;
 using CourseSignupSystem.Auth.SignUp;
 using CourseSignupSystem.ContextData;
 using CourseSignupSystem.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Text;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace CourseSignupSystem.Auth
 {
@@ -26,6 +26,60 @@ namespace CourseSignupSystem.Auth
             _config = configuration;
             _mapper = mapper;
         }
+        //private async Task SendResetPasswordEmail(string toEmail, string token)
+        //{
+        //    var apiKey = _config["SendGrid:ApiKey"];
+        //    var client = new SendGridClient(apiKey);
+        //    var from = new EmailAddress("mashiro.nguyen@gmail.com", "Course Sign Up System");
+        //    var to = new EmailAddress(toEmail);
+        //    var subject = "Reset Your Password";
+        //    var htmlContent = $"<p>Please click <a href=\"http://your-app-url/reset-password?token={token}\">here</a> to reset your password.</p>";
+        //    var msg = MailHelper.CreateSingleEmail(from, to, subject, null, htmlContent);
+        //    await client.SendEmailAsync(msg);
+        //}
+        public async Task<string> ForgotPasswordAsync(string Email)
+        {
+            try
+            {
+                var user = await _context.Users!.FirstOrDefaultAsync(u => u.Email== Email) ?? throw new Exception("Not Found");
+                var token = Guid.NewGuid().ToString();
+                user.ResetToken = token;
+                user.ResetTokenExpiration = DateTime.Now.AddMinutes(15);
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return token;
+                //await SendResetPasswordEmail(user.Email, token);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task ResetPasswordAsync(ResetPassword model)
+        {
+            try
+            {
+                var user = await _context.Users!
+                    .FirstOrDefaultAsync(u => u.Email == model.Email 
+                    && u.ResetToken == model.Token 
+                    && u.ResetTokenExpiration > DateTime.Now) ?? throw new Exception("Invalid token or token expired");
+                if( model.NewPassword != model.ConfirmPassword )
+                {
+                    throw new Exception("Password mismatch");
+                }
+                user.UserPassword = model.NewPassword;
+                user.ResetToken = null;
+                user.ResetTokenExpiration = null;
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<List<ResUserData>> SignInAsync(ReqSignIn model)
         {
             var res = new ResUserData();

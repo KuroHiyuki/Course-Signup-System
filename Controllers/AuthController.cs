@@ -1,4 +1,5 @@
 ﻿using CourseSignupSystem.Auth;
+using CourseSignupSystem.Auth.ForgotPassword;
 using CourseSignupSystem.Auth.SignIn;
 using CourseSignupSystem.Auth.SignUp;
 using Microsoft.AspNetCore.Authorization;
@@ -44,7 +45,18 @@ namespace CourseSignupSystem.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
+        }
+        [HttpPost("ForgotPassword/{Email}")]
+        public async Task<IActionResult> ForgotPassword(string Email)
+        {
+            var result = await _repo.ForgotPasswordAsync(Email);
+            return Ok(result);
+        }
+        [HttpPut("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPassword model)
+        {
+            await _repo.ResetPasswordAsync(model);
+            return Ok();
         }
     }
 }

@@ -49,6 +49,7 @@ namespace CourseSignupSystem.ContextData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             #region Add Seeder
             var seederPath = _configuration.GetValue<string>("SeederPath");
 
@@ -67,7 +68,17 @@ namespace CourseSignupSystem.ContextData
             var jsonData4 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Role_Permissions.json");
             var rolePermissionJson = JsonSerializer.Deserialize<List<Role_Permission>>(jsonData4);
             modelBuilder.Entity<Role_Permission>().HasData(rolePermissionJson!);
-#endregion
+            #endregion
+
+            modelBuilder.Entity<User>(Entity =>
+            {
+                Entity.HasIndex(e => new { e.UserName, e.Email }).IsUnique(true);
+
+                Entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
+                Entity.Property(e => e.UpdateDate).HasDefaultValueSql("(getdate())");
+
+            });
+           
             modelBuilder.Entity<Class>(Entity =>
             {
                 Entity.ToTable("CLASS");
