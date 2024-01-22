@@ -7,8 +7,11 @@ namespace CourseSignupSystem.Services.StudentManagement.DTOs
     {
         public MapperSM() 
         {
-            CreateMap<User, StudentListDTO>().ReverseMap();
-            CreateMap<User,RUDStudent>().ReverseMap();
+            CreateMap<User, StudentListDTO>()
+                .ForMember(des => des.ParentName, act => act.MapFrom(src => src.Co_Student!.ParentName))
+                .ReverseMap();
+            CreateMap<User, RUDStudentDTO>().ReverseMap();
+            CreateMap<Student_Class, EnrollmentDTO>().ReverseMap();    
         }
     }
 }

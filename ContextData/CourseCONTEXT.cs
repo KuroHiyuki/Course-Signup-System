@@ -6,6 +6,7 @@ using CourseSignupSystem.Models;
 using System.Text.Json;
 using System.Xml;
 using Microsoft.Extensions.Configuration;
+using EllipticCurve.Utils;
 
 namespace CourseSignupSystem.ContextData
 {
@@ -76,9 +77,18 @@ namespace CourseSignupSystem.ContextData
 
                 Entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
                 Entity.Property(e => e.UpdateDate).HasDefaultValueSql("(getdate())");
-
+                Entity.HasOne(d => d.Co_Student)
+                    .WithOne(p => p.GetUser)
+                    .HasForeignKey<Student>(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Student");
+                Entity.HasOne(d => d.Co_Teacher)
+                    .WithOne(p => p.GetUser)
+                    .HasForeignKey<Teacher>(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Teacher");
             });
-           
+            
             modelBuilder.Entity<Class>(Entity =>
             {
                 Entity.ToTable("CLASS");
@@ -227,19 +237,19 @@ namespace CourseSignupSystem.ContextData
             });
             modelBuilder.Entity<Student>(Entity =>
             {
-                Entity.HasOne(d => d.GetUser)
-                     .WithMany(p => p.Co_Student)
-                     .HasForeignKey(d => d.UserId)
-                     .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Student");
+                //Entity.HasOne(d => d.GetUser)
+                //     .WithMany(p => p.Co_Student)
+                //     .HasForeignKey(d => d.UserId)
+                //     .OnDelete(DeleteBehavior.ClientSetNull)
+                //     .HasConstraintName("FK_Student");
             });
             modelBuilder.Entity<Teacher>(Entity =>
             {
-                Entity.HasOne(d => d.GetUser)
-                     .WithMany(p => p.Co_Teacher)
-                     .HasForeignKey(d => d.UserId)
-                     .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Teacher");
+                //Entity.HasOne(d => d.GetUser)
+                //     .WithMany(p => p.Co_Teacher)
+                //     .HasForeignKey(d => d.UserId)
+                //     .OnDelete(DeleteBehavior.ClientSetNull)
+                //     .HasConstraintName("FK_Teacher");
             });
 
             

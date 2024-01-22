@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace CourseSignupSystem.Services.StudentManagement.DTOs
 {
-    public class RUDStudent
+    public class RUDStudentDTO
     {
         public string? UserId { get; set; }
         public string? FirstName { get; set; }

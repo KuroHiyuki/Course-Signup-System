@@ -9,10 +9,8 @@ namespace CourseSignupSystem.Models
         public User()
         {
             Co_Salary = new HashSet<Salary>();
-            Co_Student = new HashSet<Student>();
             Co_Student_Class = new HashSet<Student_Class>();
             Co_Student_Score = new HashSet<Student_Score>();
-            Co_Teacher = new HashSet<Teacher>();
             Co_Teacher_Class = new HashSet<Teacher_Class>();
         }
         [Key]
@@ -36,10 +34,10 @@ namespace CourseSignupSystem.Models
         public string? RoleId { get; set; }
         public virtual Role? GetRole { get; set; }
         public virtual ICollection<Salary> Co_Salary { get; set; }
-        public virtual ICollection<Student> Co_Student { get; set; }
+        public virtual Student? Co_Student { get; set; }
         public virtual ICollection<Student_Class> Co_Student_Class { get; set; }
         public virtual ICollection<Student_Score> Co_Student_Score { get; set; }
-        public virtual ICollection<Teacher> Co_Teacher { get; set; }
+        public virtual Teacher? Co_Teacher { get; set; }
         public virtual ICollection<Teacher_Class> Co_Teacher_Class { get; set; }
     }
 }
