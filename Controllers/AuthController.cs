@@ -21,30 +21,15 @@ namespace CourseSignupSystem.Controllers
         [HttpPost("SignUp")]
         public async Task<IActionResult> SignUp(ReqSignUp model)
         {
-            try
-            {
-                await _repo.SignUpAsync(model);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized(ex.Message);
-            }
+            await _repo.SignUpAsync(model);
+            return Ok();
         }
 
         [HttpPost("SignIn")]
         public async Task<IActionResult> SignIn(ReqSignIn model)
         {
-
-            try
-            {
-                var result = await _repo.SignInAsync(model);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = await _repo.SignInAsync(model);
+            return Ok(result);
         }
         [HttpPost("ForgotPassword/{Email}")]
         public async Task<IActionResult> ForgotPassword(string Email)

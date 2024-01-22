@@ -1,5 +1,6 @@
 using CourseSignupSystem.Auth;
 using CourseSignupSystem.ContextData;
+using CourseSignupSystem.Services.StudentManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -70,15 +71,13 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
-
+#region Scope Service
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IStudentManagementService, StudentManagementService>();
+#endregion
+
 var app = builder.Build();
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<CourseContext>();
-//    context.Seed();
-//}
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
