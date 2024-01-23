@@ -4,6 +4,7 @@ using CourseSignupSystem.Services.DepartmentManagement;
 using CourseSignupSystem.Services.FacultyManagement;
 using CourseSignupSystem.Services.ProgramManagement;
 using CourseSignupSystem.Services.StudentManagement;
+using CourseSignupSystem.Services.SubjectManagement;
 using CourseSignupSystem.Services.TeacherManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -82,6 +83,7 @@ builder.Services.AddScoped<ITeacherManagementService, TeacherManagementService>(
 builder.Services.AddScoped<IProgramManagementService, ProgramManagementService>();
 builder.Services.AddScoped<IFacultyManagementService, FacultyManagementService>();
 builder.Services.AddScoped<IDepartmentManagementService, DepartmentManagementService>();
+builder.Services.AddScoped<ISubjectManagementService, SubjectManagementService>();
 #endregion
 
 var app = builder.Build();

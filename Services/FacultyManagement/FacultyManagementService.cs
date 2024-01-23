@@ -70,9 +70,9 @@ namespace CourseSignupSystem.Services.FacultyManagement
             {
                 var update = await _context.Faculties!.FindAsync(FacultyId) ?? throw new Exception($"Invalid Program {FacultyId}");
                 update.UpdateDate = DateTime.Now;
-                update.FacultyName = model.FacultyName;
-                update.Note = model.Note;
-                update.DepartmentId = model.DepartmentId;
+                update.FacultyName = model.FacultyName != "string" ? model.FacultyName : update.FacultyName;
+                update.Note = model.Note != "string" ? model.Note : update.Note;
+                update.DepartmentId = model.DepartmentId != "string" ? model.DepartmentId : update.DepartmentId;
                 _context.Faculties!.Update(update);
                 await _context.SaveChangesAsync();
 

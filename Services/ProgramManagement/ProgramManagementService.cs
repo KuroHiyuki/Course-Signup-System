@@ -70,9 +70,9 @@ namespace CourseSignupSystem.Services.ProgramManagement
             try
             {
                 var update = await _context.Programs!.FindAsync(ProgramId) ?? throw new Exception($"Invalid Program {ProgramId}");
-                update.StartDate = model.StartDate;
-                update.EndDate = model.EndDate;
-                update.ProgramName = model.ProgramName;
+                update.StartDate = model.StartDate != DateTime.Now ? model.StartDate: update.StartDate;
+                update.EndDate = model.EndDate != DateTime.Now ? model.EndDate : update.EndDate;
+                update.ProgramName = model.ProgramName != "string" ? model.ProgramName :update.ProgramName;
                 _context.Programs!.Update(update);
                 await _context.SaveChangesAsync();
 

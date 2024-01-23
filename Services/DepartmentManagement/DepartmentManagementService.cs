@@ -66,8 +66,8 @@ namespace CourseSignupSystem.Services.DepartmentManagement
             try
             {
                 var update = await _context.Departments!.FindAsync(DepartmentId) ?? throw new Exception($"Invalid Program {DepartmentId}");
-                update.DepartmentName = model.DepartmentName;
-                update.DepartmentStatus = model.DepartmentStatus;
+                update.DepartmentName = model.DepartmentName != "string" ? model.DepartmentName : update.DepartmentName;
+                update.DepartmentStatus = model.DepartmentStatus != "string" ? model.DepartmentStatus: update.DepartmentStatus;
                 _context.Departments!.Update(update);
                 await _context.SaveChangesAsync();
 

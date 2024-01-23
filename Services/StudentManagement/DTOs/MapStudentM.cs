@@ -3,9 +3,9 @@ using CourseSignupSystem.Models;
 
 namespace CourseSignupSystem.Services.StudentManagement.DTOs
 {
-    public class MapperSM: Profile
+    public class MapStudentM: Profile
     {
-        public MapperSM() 
+        public MapStudentM() 
         {
             CreateMap<User, StudentListDTO>()
                 .ForMember(des => des.ParentName, act => act.MapFrom(src => src.Co_Student!.ParentName))

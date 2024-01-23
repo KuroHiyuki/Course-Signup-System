@@ -29,7 +29,6 @@
     <Folder Include="Services\ScoreManagement\DTO\" />
     <Folder Include="Services\Support\" />
     <Folder Include="Services\VacationManagement\" />
-    <Folder Include="Services\SubjectManagement\" />
     <Folder Include="Upload\" />
   </ItemGroup>
 
