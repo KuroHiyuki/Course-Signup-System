@@ -23,7 +23,6 @@
     <Folder Include="Handlers\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\ClassManagement\DTO\" />
-    <Folder Include="Services\DepartmentManagement\DTO\" />
     <Folder Include="Services\BudgetManagement\" />
     <Folder Include="Services\PermissionManagement\DTO\" />
     <Folder Include="Services\ScheduleManagement\DTO\" />

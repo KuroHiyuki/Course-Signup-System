@@ -1,5 +1,6 @@
 using CourseSignupSystem.Auth;
 using CourseSignupSystem.ContextData;
+using CourseSignupSystem.Services.DepartmentManagement;
 using CourseSignupSystem.Services.FacultyManagement;
 using CourseSignupSystem.Services.ProgramManagement;
 using CourseSignupSystem.Services.StudentManagement;
@@ -80,6 +81,7 @@ builder.Services.AddScoped<IStudentManagementService, StudentManagementService>(
 builder.Services.AddScoped<ITeacherManagementService, TeacherManagementService>();
 builder.Services.AddScoped<IProgramManagementService, ProgramManagementService>();
 builder.Services.AddScoped<IFacultyManagementService, FacultyManagementService>();
+builder.Services.AddScoped<IDepartmentManagementService, DepartmentManagementService>();
 #endregion
 
 var app = builder.Build();
