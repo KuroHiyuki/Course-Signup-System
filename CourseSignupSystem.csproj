@@ -22,6 +22,15 @@
   <ItemGroup>
     <Folder Include="Handlers\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Services\ClassManagement\DTO\" />
+    <Folder Include="Services\DepartmentManagement\DTO\" />
+    <Folder Include="Services\BudgetManagement\" />
+    <Folder Include="Services\PermissionManagement\DTO\" />
+    <Folder Include="Services\ScheduleManagement\DTO\" />
+    <Folder Include="Services\ScoreManagement\DTO\" />
+    <Folder Include="Services\Support\" />
+    <Folder Include="Services\VacationManagement\" />
+    <Folder Include="Services\SubjectManagement\" />
     <Folder Include="Upload\" />
   </ItemGroup>
 

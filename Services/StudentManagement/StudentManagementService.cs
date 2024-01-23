@@ -44,11 +44,8 @@ namespace CourseSignupSystem.Services.StudentManagement
         {
             try
             {
-                var delete = await _context.Users!.FirstOrDefaultAsync(u => u.UserId == UserId);
-                if (delete == null)
-                {
-                    throw new Exception($"Not found {UserId}");
-                };
+                var delete = await _context.Users!.FirstOrDefaultAsync(u => u.UserId == UserId) ?? throw new Exception($"Not found {UserId}");
+                ;
                 _context.Users!.Remove(delete!);
                
                 var parent = await _context.Students!.FirstOrDefaultAsync(u => u.UserId == UserId);
@@ -71,11 +68,7 @@ namespace CourseSignupSystem.Services.StudentManagement
                 var Student = await _context.Users!
                     .Include(st => st.Co_Student)
                     .Where(st => st.RoleId == "HV01")
-                    .ToArrayAsync();
-                if (Student == null)
-                {
-                    throw new Exception("Bad request");
-                }
+                    .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<StudentListDTO>>(Student);
             }
             catch(Exception ex)
@@ -88,11 +81,7 @@ namespace CourseSignupSystem.Services.StudentManagement
             try
             {
                 
-                var student = await _context.Users!.Include(e => e.Co_Student_Class).FirstOrDefaultAsync(u => u.UserId == UserId);
-                if (student == null)
-                {
-                    throw new Exception($"Not Found {model.UserId}");
-                }
+                var student = await _context.Users!.Include(e => e.Co_Student_Class).FirstOrDefaultAsync(u => u.UserId == UserId) ?? throw new Exception($"Not Found {model.UserId}");
                 student.UpdateDate = DateTime.Now;
                 student.FirstName = model.FirstName != "string" ? model.FirstName : student.FirstName;
                 student.LastName = model.LastName != "string" ? model.LastName : student.LastName;
@@ -128,11 +117,7 @@ namespace CourseSignupSystem.Services.StudentManagement
                 var Student = await _context.Users!
                     .Include(st => st.Co_Student)
                     .Where(st => st.RoleId == "HV01" && st.Co_Student_Class.Any(e => e.ClassId == ClassId))
-                    .ToArrayAsync();
-                if (Student == null)
-                {
-                    throw new Exception("Missing class");
-                }
+                    .ToArrayAsync() ?? throw new Exception("Missing class");
                 return _mapper.Map<List<StudentListDTO>>(Student);
             }
             catch (Exception ex)
@@ -144,11 +129,7 @@ namespace CourseSignupSystem.Services.StudentManagement
         {
             try
             {
-                var Enroll = _mapper.Map<Student_Class>(model);
-                if (Enroll == null)
-                {
-                    throw new Exception("Failed");
-                }
+                var Enroll = _mapper.Map<Student_Class>(model) ?? throw new Exception("Failed");
                 Enroll.EnrollmentDate = DateTime.Now;
                 Enroll.IsPayment = false;
                 _context.Add(Enroll);

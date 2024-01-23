@@ -1,6 +1,9 @@
 using CourseSignupSystem.Auth;
 using CourseSignupSystem.ContextData;
+using CourseSignupSystem.Services.FacultyManagement;
+using CourseSignupSystem.Services.ProgramManagement;
 using CourseSignupSystem.Services.StudentManagement;
+using CourseSignupSystem.Services.TeacherManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -74,6 +77,9 @@ builder.Services.AddAuthentication(options => {
 #region Scope Service
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IStudentManagementService, StudentManagementService>();
+builder.Services.AddScoped<ITeacherManagementService, TeacherManagementService>();
+builder.Services.AddScoped<IProgramManagementService, ProgramManagementService>();
+builder.Services.AddScoped<IFacultyManagementService, FacultyManagementService>();
 #endregion
 
 var app = builder.Build();
