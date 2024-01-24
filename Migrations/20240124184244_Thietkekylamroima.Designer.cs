@@ -4,6 +4,7 @@ using CourseSignupSystem.ContextData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSignupSystem.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    partial class CourseContextModelSnapshot : ModelSnapshot
+    [Migration("20240124184244_Thietkekylamroima")]
+    partial class Thietkekylamroima
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2322,7 +2324,7 @@ namespace CourseSignupSystem.Migrations
 
                     b.HasKey("ScoreId");
 
-                    b.ToTable("Scores");
+                    b.ToTable("Score");
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Student", b =>
@@ -2405,8 +2407,11 @@ namespace CourseSignupSystem.Migrations
                     b.Property<string>("FacultyId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProgramId")
+                    b.Property<string>("GetProgramsProgramId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProgramId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubjectName")
                         .HasColumnType("nvarchar(max)");
@@ -2418,7 +2423,7 @@ namespace CourseSignupSystem.Migrations
 
                     b.HasIndex("FacultyId");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex("GetProgramsProgramId");
 
                     b.ToTable("Subjects");
 
@@ -2426,7 +2431,7 @@ namespace CourseSignupSystem.Migrations
                         new
                         {
                             SubjectId = "NOTSET_SUBJECT",
-                            CreatedDate = new DateTime(2024, 1, 25, 3, 10, 0, 348, DateTimeKind.Local).AddTicks(5715),
+                            CreatedDate = new DateTime(2024, 1, 25, 1, 42, 43, 276, DateTimeKind.Local).AddTicks(7308),
                             FacultyId = "NOTSET_FACULTY",
                             SubjectName = "Chưa set-up môn học"
                         });
@@ -2565,7 +2570,7 @@ namespace CourseSignupSystem.Migrations
                         {
                             UserId = "ADMIN0001",
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 1, 25, 3, 10, 0, 347, DateTimeKind.Local).AddTicks(8751),
+                            CreatedDate = new DateTime(2024, 1, 25, 1, 42, 43, 276, DateTimeKind.Local).AddTicks(854),
                             Email = "Admin@gmail.com",
                             FirstName = "Quản trị viên",
                             Image = "",
@@ -2573,7 +2578,7 @@ namespace CourseSignupSystem.Migrations
                             NumberPhone = "0798222837",
                             RoleId = "QTV01",
                             Sex = 1,
-                            UpdateDate = new DateTime(2024, 1, 25, 3, 10, 0, 347, DateTimeKind.Local).AddTicks(8761),
+                            UpdateDate = new DateTime(2024, 1, 25, 1, 42, 43, 276, DateTimeKind.Local).AddTicks(865),
                             UserName = "Admin",
                             UserPassword = "Admin01"
                         });
@@ -2773,19 +2778,19 @@ namespace CourseSignupSystem.Migrations
                     b.HasOne("CourseSignupSystem.Models.Score", "GetScore")
                         .WithMany("Co_Student_Score")
                         .HasForeignKey("ScoreId")
-                        .HasConstraintName("FK_Score_Student1");
+                        .HasConstraintName("FK_Score_Student");
 
                     b.HasOne("CourseSignupSystem.Models.Subject", "GetSubject")
                         .WithMany("Co_Student_Score")
                         .HasForeignKey("SubjectId")
                         .IsRequired()
-                        .HasConstraintName("FK_Subject_Student1");
+                        .HasConstraintName("FK_Subject_Student");
 
                     b.HasOne("CourseSignupSystem.Models.User", "GetUser")
                         .WithMany("Co_Student_Score")
                         .HasForeignKey("UserId")
                         .IsRequired()
-                        .HasConstraintName("FK_Student_Score1");
+                        .HasConstraintName("FK_Student_Score");
 
                     b.Navigation("GetScore");
 
@@ -2802,8 +2807,7 @@ namespace CourseSignupSystem.Migrations
 
                     b.HasOne("CourseSignupSystem.Models.Programs", "GetPrograms")
                         .WithMany("Co_Subjects")
-                        .HasForeignKey("ProgramId")
-                        .HasConstraintName("FK_Program");
+                        .HasForeignKey("GetProgramsProgramId");
 
                     b.Navigation("GetFaculty");
 
@@ -2816,13 +2820,13 @@ namespace CourseSignupSystem.Migrations
                         .WithMany("Co_Subject_Score")
                         .HasForeignKey("ScoreId")
                         .IsRequired()
-                        .HasConstraintName("FK_Score_Subject1");
+                        .HasConstraintName("FK_Score_Subject");
 
                     b.HasOne("CourseSignupSystem.Models.Subject", "GetSubject")
                         .WithMany("Co_Subject_Score")
                         .HasForeignKey("SubjectId")
                         .IsRequired()
-                        .HasConstraintName("FK_Subject_Score1");
+                        .HasConstraintName("FK_Subject_Score");
 
                     b.Navigation("GetScore");
 

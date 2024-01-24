@@ -150,10 +150,10 @@ namespace CourseSignupSystem.Services.ClassManagement
             try
             {
                 var Subject = await _context.Subjects!
-                    .Include(st => st.Co_Class_Subject)
+                    .Include(st => st.Co_Class_Subject)!
                     .ThenInclude(sc => sc.GetClass)
                     .Include(uc => uc.GetFaculty)
-                    .Where(st =>  st.Co_Class_Subject.FirstOrDefault(fs => fs.SubjectId == st.SubjectId)!.GetClass!.ClassId == ClassId)
+                    .Where(st =>  st.Co_Class_Subject!.FirstOrDefault(fs => fs.SubjectId == st.SubjectId)!.GetClass!.ClassId == ClassId)
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<SubjectOfClassListDTO>>(Subject);
             }

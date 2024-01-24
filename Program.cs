@@ -4,6 +4,7 @@ using CourseSignupSystem.Services.ClassManagement;
 using CourseSignupSystem.Services.DepartmentManagement;
 using CourseSignupSystem.Services.FacultyManagement;
 using CourseSignupSystem.Services.ProgramManagement;
+using CourseSignupSystem.Services.ScoreManagement;
 using CourseSignupSystem.Services.StudentManagement;
 using CourseSignupSystem.Services.SubjectManagement;
 using CourseSignupSystem.Services.TeacherManagement;
@@ -86,6 +87,7 @@ builder.Services.AddScoped<IFacultyManagementService, FacultyManagementService>(
 builder.Services.AddScoped<IDepartmentManagementService, DepartmentManagementService>();
 builder.Services.AddScoped<ISubjectManagementService, SubjectManagementService>();
 builder.Services.AddScoped<IClassManagementService, ClassManagementService>();
+builder.Services.AddScoped<IScoreManagementService, ScoreManagementSerive>();
 #endregion
 
 var app = builder.Build();

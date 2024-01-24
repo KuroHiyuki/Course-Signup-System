@@ -7,6 +7,7 @@ namespace CourseSignupSystem.Models
         public Programs()
         {
             Co_Class_Prgram = new HashSet<Class_Program>();
+            Co_Subjects = new HashSet<Subject>();
         }
         [Key]
         public string? ProgramId { get; set; }
@@ -15,7 +16,8 @@ namespace CourseSignupSystem.Models
         public DateTime StartDate {  get; set; }
         public DateTime? EndDate { get; set;}
         public string? Description { get; set; }
-        public virtual ICollection<Class_Program> Co_Class_Prgram { get; set; }
+        public virtual ICollection<Subject>? Co_Subjects { get; set; }
+        public virtual ICollection<Class_Program>? Co_Class_Prgram { get; set; }
 
 
     }

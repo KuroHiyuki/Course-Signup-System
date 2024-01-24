@@ -35,6 +35,7 @@ namespace CourseSignupSystem.ContextData
         public virtual DbSet<Room>? Rooms { get; set; }
         public virtual DbSet<Salary>? Salaries { get; set; }
         public virtual DbSet<Schedule>? Schedules { get; set; }
+        public virtual DbSet<Score>? Scores { get; set; }    
         public virtual DbSet<Student>? Students { get; set; }
         public virtual DbSet<Student_Class>? Student_Classes { get; set; }
         public virtual DbSet<Student_Score>? Student_Scores { get; set; }
@@ -109,7 +110,14 @@ namespace CourseSignupSystem.ContextData
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Teacher");
             });
-            
+            modelBuilder.Entity<Subject>(Entity =>
+            {
+                Entity.HasOne(d => d.GetPrograms)
+                     .WithMany(p => p.Co_Subjects)
+                     .HasForeignKey(d => d.ProgramId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Program");
+            });
             modelBuilder.Entity<Class>(Entity =>
             {
                 Entity.ToTable("CLASS");
@@ -226,18 +234,19 @@ namespace CourseSignupSystem.ContextData
                      .WithMany(p => p.Co_Student_Score)
                      .HasForeignKey(d => d.UserId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Student_Score");
+                     .HasConstraintName("FK_Student_Score1");
 
                 Entity.HasOne(d => d.GetSubject)
                      .WithMany(p => p.Co_Student_Score)
                      .HasForeignKey(d => d.SubjectId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Subject_Student");
+                     .HasConstraintName("FK_Subject_Student1");
+
                 Entity.HasOne(d => d.GetScore)
                      .WithMany(p => p.Co_Student_Score)
                      .HasForeignKey(d => d.ScoreId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Score_Student");
+                     .HasConstraintName("FK_Score_Student1");
             });
             modelBuilder.Entity<Subject_Score>(Entity =>
             {
@@ -248,13 +257,13 @@ namespace CourseSignupSystem.ContextData
                      .WithMany(p => p.Co_Subject_Score)
                      .HasForeignKey(d => d.SubjectId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Subject_Score");
+                     .HasConstraintName("FK_Subject_Score1");
 
                 Entity.HasOne(d => d.GetScore)
                      .WithMany(p => p.Co_Subject_Score)
                      .HasForeignKey(d => d.ScoreId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
-                     .HasConstraintName("FK_Score_Subject");
+                     .HasConstraintName("FK_Score_Subject1");
             });
             modelBuilder.Entity<Teacher_Class>(Entity =>
             {
@@ -273,23 +282,6 @@ namespace CourseSignupSystem.ContextData
                      .OnDelete(DeleteBehavior.ClientSetNull)
                      .HasConstraintName("FK_Class_Teacher");
             });
-            modelBuilder.Entity<Student>(Entity =>
-            {
-                //Entity.HasOne(d => d.GetUser)
-                //     .WithMany(p => p.Co_Student)
-                //     .HasForeignKey(d => d.UserId)
-                //     .OnDelete(DeleteBehavior.ClientSetNull)
-                //     .HasConstraintName("FK_Student");
-            });
-            modelBuilder.Entity<Teacher>(Entity =>
-            {
-                //Entity.HasOne(d => d.GetUser)
-                //     .WithMany(p => p.Co_Teacher)
-                //     .HasForeignKey(d => d.UserId)
-                //     .OnDelete(DeleteBehavior.ClientSetNull)
-                //     .HasConstraintName("FK_Teacher");
-            });
-
             
         }
         #endregion
