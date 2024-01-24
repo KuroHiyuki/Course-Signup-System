@@ -5,6 +5,7 @@
         public string? ClassId { get; set; }
         public string? ClassName { get; set; }
         public string? ProgramId { get; set; }
+        public string? DepartmentId { get; set; }
         public int MaxStudent { get; set; } = 1;
         public int? FeeCost { get; set; } = 1;
         public string? Description { get; set; }

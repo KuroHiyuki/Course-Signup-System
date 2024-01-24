@@ -2,8 +2,6 @@
 using CourseSignupSystem.ContextData;
 using CourseSignupSystem.Models;
 using CourseSignupSystem.Services.ClassManagement.DTO;
-using CourseSignupSystem.Services.DepartmentManagement.DTO;
-using CourseSignupSystem.Services.StudentManagement.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace CourseSignupSystem.Services.ClassManagement
@@ -23,7 +21,7 @@ namespace CourseSignupSystem.Services.ClassManagement
             try
             {
                 var Classes = _mapper.Map<Class>(model);
-                if (model.ProgramId == null)
+                if (model.ClassId == null)
                 {
                     Classes.ClassId = Guid.NewGuid().ToString();
                 }
@@ -37,13 +35,13 @@ namespace CourseSignupSystem.Services.ClassManagement
                     TypeId = "ALLCOURSE100%"
                 };
                 _context.Add(Cost);
-                await _context.SaveChangesAsync();
                 Classes.FeeId = Cost.FeeId;
+                Classes.DepartmentId = model.DepartmentId;
                 Classes.ScheduleId = "NOTSET_SCHEDULE";
                 _context.Add(Classes);
                 var program = new Class_Program
                 {
-                    ClassId =model.ClassId,
+                    ClassId = model.ClassId,
                     ProgramId = model.ProgramId,
                 };
                 _context.Add(program);
@@ -63,6 +61,45 @@ namespace CourseSignupSystem.Services.ClassManagement
                     .FirstOrDefaultAsync(u => u.ClassId == ClassId) ?? throw new Exception($"Not found {ClassId}");
                 ;
                 _context.Classes!.Remove(delete!);
+                var delete_R_Program = await _context.Class_Programs!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if(delete_R_Program != null)
+                {
+                    _context.Class_Programs!.Remove(delete_R_Program!);
+                };
+
+                var delete_R_Room = await _context.Class_Rooms!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if (delete_R_Room != null)
+                {
+                    _context.Class_Rooms!.Remove(delete_R_Room!);
+                };
+                
+                var delete_R_Student = await _context.Student_Classes!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if (delete_R_Student != null)
+                {
+                    _context.Student_Classes!.Remove(delete_R_Student!);
+                };
+                
+                var delete_R_Teacher = await _context.Teacher_Classes!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if (delete_R_Teacher != null)
+                {
+                    _context.Teacher_Classes!.Remove(delete_R_Teacher!);
+                };
+                var delete_R_Subject = await _context.Class_Subjects!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if (delete_R_Subject != null)
+                {
+                    _context.Class_Subjects!.Remove(delete_R_Subject!);
+                };
+                var delete_R_Salary = await _context.Salaries!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                if (delete_R_Salary != null)
+                {
+                    _context.Salaries!.Remove(delete_R_Salary!);
+                };
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -80,10 +117,7 @@ namespace CourseSignupSystem.Services.ClassManagement
                     .ThenInclude(g => g.GetProgram)
                     .Include(f => f.GetFee)
                     .Include(e => e.GetSchedule)
-                    .Include(a => a.Co_Class_Subject)
-                    .ThenInclude(af => af.GetSubject)
-                    .ThenInclude(b => b!.GetFaculty)
-                    .ThenInclude(c => c!.GetDepartment)
+                    .Include(a => a.GetDepartment)
                     .Include(ks => ks.Co_Student_Class)
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<ClassListDTO>>(classes);
@@ -129,9 +163,47 @@ namespace CourseSignupSystem.Services.ClassManagement
             }
         }
 
-        public Task UpdateClassAsync(string ClassId, RUDClassDTO model)
+        public async Task UpdateClassAsync(string ClassId, RUDClassDTO model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var update = await _context.Classes!.FindAsync(ClassId) ?? throw new Exception($"Invalid Class {ClassId}");
+                update.IsOpen = model.IsOpen;
+                update.ClassId = model.ClassId != "string" ? model.ClassId : update.ClassId;
+                update.ClassName = model.ClassName != "string" ? model.ClassName : update.ClassName;
+                update.MaxStudent = model.MaxStudent != 0 ? model.MaxStudent : update.MaxStudent;
+                update.Image = model.Image != "string" ? model.Image : update.Image;
+                update.DepartmentId = model.DepartmentId != "string" ? model.DepartmentId : update.DepartmentId;
+                update.Description = model.Description != "string" ? model.Description : update.Description;
+                _context.Classes!.Update(update);
+
+                var Cost = await _context.Fees!.FindAsync(update.FeeId);
+                Cost!.FeeCost = model.FeeCost != 0? model.FeeCost: Cost.FeeCost;
+                _context.Fees!.Update(Cost);
+                
+                if(model.ProgramId !=  "string")
+                {
+                    var delete_R_Program = await _context.Class_Programs!
+                    .FirstOrDefaultAsync(u => u.ClassId == ClassId);
+                    if (delete_R_Program != null)
+                    {
+                        _context.Class_Programs!.Remove(delete_R_Program!);
+                    };
+                    var program = new Class_Program
+                    {
+                        ClassId = ClassId,
+                        ProgramId = model.ProgramId,
+                    };
+                    _context.Add(program);
+                }
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public Task AddScore()
         {

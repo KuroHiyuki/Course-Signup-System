@@ -24,10 +24,12 @@ namespace CourseSignupSystem.Models
         public int MaxStudent { get; set; }
         public bool? IsOpen { get; set; } = true;
         public string? Term { get; set; }
+        public string? DepartmentId { get; set; }
         public string? ScheduleId { get; set; } 
         public string? FeeId { get; set; }
         public virtual Schedule? GetSchedule { get; set; }
         public virtual Fee? GetFee { get; set; }
+        public virtual Department? GetDepartment { get; set; }
         public virtual ICollection<Class_Program> Co_Class_Program { get; set; }
         public virtual ICollection<Class_Room> Co_Class_Room { get; set; }
         public virtual ICollection<Class_Subject> Co_Class_Subject { get; set; }
