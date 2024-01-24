@@ -31,7 +31,6 @@ namespace CourseSignupSystem.Services.DepartmentManagement
                 throw new Exception(ex.Message);
             }
         }
-
         public async Task DeleteDepartmentAsync(string DepartmentId)
         {
             try
@@ -52,6 +51,7 @@ namespace CourseSignupSystem.Services.DepartmentManagement
             try
             {
                 var departments = await _context.Departments!
+                    .Where(d => d.DepartmentId != "NOTSET_DEPARTMENT")
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<DepartmentListDTO>>(departments);
             }

@@ -58,6 +58,7 @@ namespace CourseSignupSystem.Services.SubjectManagement
                 var subject = await _context.Subjects!
                     .Include(f => f.GetFaculty)
                     .ThenInclude(d => d!.GetDepartment)
+                    .Where(d => d.SubjectId != "NOTSET_SUBJECT")
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<SubjectListDTO>>(subject);
             }

@@ -1,0 +1,26 @@
+﻿[
+  {
+    "TypeId": "ALLCOURSE100%",
+    "TypeName": "Thu toàn bộ khoá học 100%",
+    "Description": "Tính cả khoá nhưng có thể chỉ riêng từng lớp",
+    "RateOfCharge": 100
+  },
+  {
+    "TypeId": "ALLCOURSE50%",
+    "TypeName": "Thu toàn bộ khoá học 50%",
+    "Description": "Tính cả khoá nhưng có thể chỉ riêng từng lớp",
+    "RateOfCharge": 50
+  },
+  {
+    "TypeId": "PARTCOURSE",
+    "TypeName": "Thu theo từng môn hoặc từng lớp",
+    "Description": "Thu trong một lần",
+    "RateOfCharge": 100
+  },
+  {
+    "TypeId": "HAlFCOURSE",
+    "TypeName": "Thu chia thành 2 đợt",
+    "Description": "Chia học phí thành 2 đợt",
+    "RateOfCharge": 50
+  }
+]

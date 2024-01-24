@@ -22,6 +22,7 @@ namespace CourseSignupSystem.ContextData
         #region Dbcontext Enities
         public virtual DbSet<Class>? Classes { get; set; }
         public virtual DbSet<Class_Program>? Class_Programs { get; set; }
+        public virtual DbSet<Class_Subject>? Class_Subjects { get; set; }
         public virtual DbSet<Class_Room>? Class_Rooms { get; set; }
         public virtual DbSet<Department>? Departments { get; set; }
         public virtual DbSet<Faculty>? Faculties { get; set; }
@@ -69,6 +70,26 @@ namespace CourseSignupSystem.ContextData
             var jsonData4 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Role_Permissions.json");
             var rolePermissionJson = JsonSerializer.Deserialize<List<Role_Permission>>(jsonData4);
             modelBuilder.Entity<Role_Permission>().HasData(rolePermissionJson!);
+
+            var jsonData5 = System.IO.File.ReadAllText($"{seederPath}Seeders\\FeeTypes.json");
+            var FeeTypeJson = JsonSerializer.Deserialize<List<FeeType>>(jsonData5);
+            modelBuilder.Entity<FeeType>().HasData(FeeTypeJson!);
+
+            var jsonData6 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Subjects.json");
+            var SubjectJson = JsonSerializer.Deserialize<List<Subject>>(jsonData6);
+            modelBuilder.Entity<Subject>().HasData(SubjectJson!);
+
+            var jsonData7 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Facultys.json");
+            var FacultyJson = JsonSerializer.Deserialize<List<Faculty>>(jsonData7);
+            modelBuilder.Entity<Faculty>().HasData(FacultyJson!);
+
+            var jsonData8 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Departments.json");
+            var DepartmentJson = JsonSerializer.Deserialize<List<Department>>(jsonData8);
+            modelBuilder.Entity<Department>().HasData(DepartmentJson!);
+
+            var jsonData9 = System.IO.File.ReadAllText($"{seederPath}Seeders\\Schedules.json");
+            var ScheduleJson = JsonSerializer.Deserialize<List<Schedule>>(jsonData9);
+            modelBuilder.Entity<Schedule>().HasData(ScheduleJson!);
             #endregion
 
             modelBuilder.Entity<User>(Entity =>
@@ -110,6 +131,23 @@ namespace CourseSignupSystem.ContextData
                      .HasForeignKey(d => d.ProgramId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
                      .HasConstraintName("FK_Program_Class");
+            });
+            modelBuilder.Entity<Class_Subject>(Entity =>
+            {
+                Entity.ToTable("R_Class_Subject");
+                Entity.HasKey(k => new { k.SubjectId, k.ClassId });
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Class_Subject)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Subject");
+
+                Entity.HasOne(d => d.GetSubject)
+                     .WithMany(p => p.Co_Class_Subject)
+                     .HasForeignKey(d => d.SubjectId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Subject_Class");
             });
             modelBuilder.Entity<Class_Room>(Entity =>
             {

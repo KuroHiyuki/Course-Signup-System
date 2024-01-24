@@ -4,6 +4,7 @@ using CourseSignupSystem.ContextData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSignupSystem.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    partial class CourseContextModelSnapshot : ModelSnapshot
+    [Migration("20240123093816_ClassUpdate")]
+    partial class ClassUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,6 +59,9 @@ namespace CourseSignupSystem.Migrations
                     b.Property<DateTime>("StartedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SubjectId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Term")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,6 +71,8 @@ namespace CourseSignupSystem.Migrations
                     b.HasIndex("FeeId");
 
                     b.HasIndex("ScheduleId");
+
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("CLASS", (string)null);
                 });
@@ -103,24 +110,6 @@ namespace CourseSignupSystem.Migrations
                     b.ToTable("R_Class_Room", (string)null);
                 });
 
-            modelBuilder.Entity("CourseSignupSystem.Models.Class_Subject", b =>
-                {
-                    b.Property<string>("SubjectId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ClassId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("SubjectId", "ClassId");
-
-                    b.HasIndex("ClassId");
-
-                    b.ToTable("R_Class_Subject", (string)null);
-                });
-
             modelBuilder.Entity("CourseSignupSystem.Models.Department", b =>
                 {
                     b.Property<string>("DepartmentId")
@@ -138,14 +127,6 @@ namespace CourseSignupSystem.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = "NOTSET_DEPARTMENT",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartmentName = "Chưa set-up Khoa/ khối"
-                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Faculty", b =>
@@ -173,14 +154,6 @@ namespace CourseSignupSystem.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Faculties");
-
-                    b.HasData(
-                        new
-                        {
-                            FacultyId = "NOTSET_FACULTY",
-                            DepartmentId = "NOTSET_DEPARTMENT",
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Fee", b =>
@@ -221,8 +194,8 @@ namespace CourseSignupSystem.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RateOfCharge")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("RateOfCharge")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TypeName")
                         .HasColumnType("nvarchar(max)");
@@ -230,36 +203,6 @@ namespace CourseSignupSystem.Migrations
                     b.HasKey("TypeId");
 
                     b.ToTable("FeeTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            TypeId = "ALLCOURSE100%",
-                            Description = "Tính cả khoá nhưng có thể chỉ riêng từng lớp",
-                            RateOfCharge = 100,
-                            TypeName = "Thu toàn bộ khoá học 100%"
-                        },
-                        new
-                        {
-                            TypeId = "ALLCOURSE50%",
-                            Description = "Tính cả khoá nhưng có thể chỉ riêng từng lớp",
-                            RateOfCharge = 50,
-                            TypeName = "Thu toàn bộ khoá học 50%"
-                        },
-                        new
-                        {
-                            TypeId = "PARTCOURSE",
-                            Description = "Thu trong một lần",
-                            RateOfCharge = 100,
-                            TypeName = "Thu theo từng môn hoặc từng lớp"
-                        },
-                        new
-                        {
-                            TypeId = "HAlFCOURSE",
-                            Description = "Chia học phí thành 2 đợt",
-                            RateOfCharge = 50,
-                            TypeName = "Thu chia thành 2 đợt"
-                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Permission", b =>
@@ -2293,15 +2236,6 @@ namespace CourseSignupSystem.Migrations
                     b.HasKey("ScheduleId");
 
                     b.ToTable("Schedules");
-
-                    b.HasData(
-                        new
-                        {
-                            ScheduleId = "NOTSET_SCHEDULE",
-                            Duration = 0m,
-                            ScheduleName = 0,
-                            TimeStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Score", b =>
@@ -2417,15 +2351,6 @@ namespace CourseSignupSystem.Migrations
                     b.HasIndex("FacultyId");
 
                     b.ToTable("Subjects");
-
-                    b.HasData(
-                        new
-                        {
-                            SubjectId = "NOTSET_SUBJECT",
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 38, 16, 473, DateTimeKind.Local).AddTicks(2861),
-                            FacultyId = "NOTSET_FACULTY",
-                            SubjectName = "Chưa set-up môn học"
-                        });
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Subject_Score", b =>
@@ -2555,7 +2480,7 @@ namespace CourseSignupSystem.Migrations
                         {
                             UserId = "ADMIN0001",
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 38, 16, 472, DateTimeKind.Local).AddTicks(6051),
+                            CreatedDate = new DateTime(2024, 1, 23, 16, 38, 15, 451, DateTimeKind.Local).AddTicks(152),
                             Email = "Admin@gmail.com",
                             FirstName = "Quản trị viên",
                             Image = "",
@@ -2563,7 +2488,7 @@ namespace CourseSignupSystem.Migrations
                             NumberPhone = "0798222837",
                             RoleId = "QTV01",
                             Sex = 1,
-                            UpdateDate = new DateTime(2024, 1, 24, 17, 38, 16, 472, DateTimeKind.Local).AddTicks(6060),
+                            UpdateDate = new DateTime(2024, 1, 23, 16, 38, 15, 451, DateTimeKind.Local).AddTicks(161),
                             UserName = "Admin",
                             UserPassword = "Admin01"
                         });
@@ -2604,9 +2529,15 @@ namespace CourseSignupSystem.Migrations
                         .WithMany("Co_Class")
                         .HasForeignKey("ScheduleId");
 
+                    b.HasOne("CourseSignupSystem.Models.Subject", "GetSubject")
+                        .WithMany("Co_Class")
+                        .HasForeignKey("SubjectId");
+
                     b.Navigation("GetFee");
 
                     b.Navigation("GetSchedule");
+
+                    b.Navigation("GetSubject");
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Class_Program", b =>
@@ -2645,25 +2576,6 @@ namespace CourseSignupSystem.Migrations
                     b.Navigation("GetClass");
 
                     b.Navigation("GetRoom");
-                });
-
-            modelBuilder.Entity("CourseSignupSystem.Models.Class_Subject", b =>
-                {
-                    b.HasOne("CourseSignupSystem.Models.Class", "GetClass")
-                        .WithMany("Co_Class_Subject")
-                        .HasForeignKey("ClassId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Class_Subject");
-
-                    b.HasOne("CourseSignupSystem.Models.Subject", "GetSubject")
-                        .WithMany("Co_Class_Subject")
-                        .HasForeignKey("SubjectId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Subject_Class");
-
-                    b.Navigation("GetClass");
-
-                    b.Navigation("GetSubject");
                 });
 
             modelBuilder.Entity("CourseSignupSystem.Models.Faculty", b =>
@@ -2851,8 +2763,6 @@ namespace CourseSignupSystem.Migrations
 
                     b.Navigation("Co_Class_Room");
 
-                    b.Navigation("Co_Class_Subject");
-
                     b.Navigation("Co_Salary");
 
                     b.Navigation("Co_Student_Class");
@@ -2916,7 +2826,7 @@ namespace CourseSignupSystem.Migrations
 
             modelBuilder.Entity("CourseSignupSystem.Models.Subject", b =>
                 {
-                    b.Navigation("Co_Class_Subject");
+                    b.Navigation("Co_Class");
 
                     b.Navigation("Co_Student_Score");
 

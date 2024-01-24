@@ -11,6 +11,7 @@ namespace CourseSignupSystem.Models
             Co_Salary = new HashSet<Salary>();
             Co_Student_Class = new HashSet<Student_Class>();
             Co_Teacher_Class = new HashSet<Teacher_Class>();
+            Co_Class_Subject = new HashSet<Class_Subject>();
         }
         [Key]
         public string? ClassId { get; set; }
@@ -19,17 +20,17 @@ namespace CourseSignupSystem.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime StartedDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string? Image { get; set; }
         public int MaxStudent { get; set; }
         public bool? IsOpen { get; set; } = true;
         public string? Term { get; set; }
         public string? ScheduleId { get; set; } 
         public string? FeeId { get; set; }
-        public string? SubjectId { get; set; }
         public virtual Schedule? GetSchedule { get; set; }
         public virtual Fee? GetFee { get; set; }
-        public virtual Subject? GetSubject { get; set; }
         public virtual ICollection<Class_Program> Co_Class_Program { get; set; }
         public virtual ICollection<Class_Room> Co_Class_Room { get; set; }
+        public virtual ICollection<Class_Subject> Co_Class_Subject { get; set; }
         public virtual ICollection<Salary> Co_Salary { get; set; }
         public virtual ICollection<Student_Class> Co_Student_Class { get; set; }
         public virtual ICollection<Teacher_Class> Co_Teacher_Class { get; set; }

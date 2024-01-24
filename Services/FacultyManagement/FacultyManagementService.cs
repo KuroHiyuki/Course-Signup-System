@@ -55,6 +55,7 @@ namespace CourseSignupSystem.Services.FacultyManagement
             try
             {
                 var faculty = await _context.Faculties!
+                    .Where(d => d.FacultyId != "NOTSET_FACULTY")
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<FacultyListDTO>>(faculty);
             }

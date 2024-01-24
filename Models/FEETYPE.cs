@@ -13,7 +13,7 @@ namespace CourseSignupSystem.Models
         public string? TypeId { get; set; }
         public string? TypeName { get; set; }
         public string? Description { get; set; }
-        public decimal? RateOfCharge { get; set; }
+        public int? RateOfCharge { get; set; }
         public virtual ICollection<Fee> Co_Fee { get; set; }
 
     }
