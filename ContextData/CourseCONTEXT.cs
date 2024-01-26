@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
-using System.Text.RegularExpressions;
-using System;
 using CourseSignupSystem.Models;
 using System.Text.Json;
-using System.Xml;
-using Microsoft.Extensions.Configuration;
-using EllipticCurve.Utils;
+
 
 namespace CourseSignupSystem.ContextData
 {

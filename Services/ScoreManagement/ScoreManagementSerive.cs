@@ -83,11 +83,7 @@ namespace CourseSignupSystem.Services.ScoreManagement
                 }
                 var update = await _context.Subject_Scores!
                     .Where(st => st.ScoreId == ScoreId && st.SubjectId == SubjectId)
-                    .FirstOrDefaultAsync();
-                if(update == null )
-                {
-                    throw new Exception($"Invalid or not found {ScoreId} and {SubjectId}");
-                }
+                    .FirstOrDefaultAsync() ?? throw new Exception($"Invalid or not found {ScoreId} and {SubjectId}");
                 update!.RequiredColumn = model.RequiredColumn != 0? model.RequiredColumn : update.RequiredColumn;
                 update!.ScoreColumn = model.ScoreColumn != 0? model.ScoreColumn : update.ScoreColumn;
                 _context.Subject_Scores!.Update(update!);
