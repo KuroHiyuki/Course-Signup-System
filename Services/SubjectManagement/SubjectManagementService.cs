@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CourseSignupSystem.ContextData;
 using CourseSignupSystem.Models;
-using CourseSignupSystem.Services.ProgramManagement.DTO;
 using CourseSignupSystem.Services.SubjectManagement.DTO;
 using Microsoft.EntityFrameworkCore;
 

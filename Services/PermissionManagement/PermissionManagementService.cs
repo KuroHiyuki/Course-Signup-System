@@ -154,7 +154,7 @@ namespace CourseSignupSystem.Services.PermissionManagement
             {
                 var RolePermission = await _context.Permissions!
                     .Include(da => da.Co_Role_Permission)
-                    .Where(st => st.Co_Role_Permission.FirstOrDefault(ds => ds.PermissionId == st.PermissionId)!.RoleId == RoleId || st.Co_Role_Permission.FirstOrDefault(ds => ds.PermissionId == st.PermissionId)!.RoleId == null)
+                    .Where(st => st.Co_Role_Permission.FirstOrDefault(ed => ed.PermissionId == st.PermissionId)!.RoleId == RoleId)
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<RolePermissionDTO>>(RolePermission);
             }

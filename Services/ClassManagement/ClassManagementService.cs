@@ -37,7 +37,7 @@ namespace CourseSignupSystem.Services.ClassManagement
                 _context.Add(Cost);
                 Classes.FeeId = Cost.FeeId;
                 Classes.DepartmentId = model.DepartmentId;
-                Classes.ScheduleId = "NOTSET_SCHEDULE";
+                //Classes.ScheduleId = "NOTSET_SCHEDULE";
                 _context.Add(Classes);
                 var program = new Class_Program
                 {
@@ -116,7 +116,8 @@ namespace CourseSignupSystem.Services.ClassManagement
                     .Include(p => p.Co_Class_Program)
                     .ThenInclude(g => g.GetProgram)
                     .Include(f => f.GetFee)
-                    .Include(e => e.GetSchedule)
+                    .Include(e => e.Co_Class_Schedules)
+                    .ThenInclude(g => g.GetSchedule)
                     .Include(a => a.GetDepartment)
                     .Include(ks => ks.Co_Student_Class)
                     .ToArrayAsync() ?? throw new Exception("Bad request");

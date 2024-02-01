@@ -1,15 +1,18 @@
 using CourseSignupSystem.Auth;
 using CourseSignupSystem.ContextData;
+using CourseSignupSystem.Services.AnotherService;
 using CourseSignupSystem.Services.ClassManagement;
 using CourseSignupSystem.Services.DepartmentManagement;
 using CourseSignupSystem.Services.FacultyManagement;
 using CourseSignupSystem.Services.PermissionManagement;
 using CourseSignupSystem.Services.ProgramManagement;
 using CourseSignupSystem.Services.RevenueManagement;
+using CourseSignupSystem.Services.ScheduleManagement;
 using CourseSignupSystem.Services.ScoreManagement;
 using CourseSignupSystem.Services.StudentManagement;
 using CourseSignupSystem.Services.SubjectManagement;
 using CourseSignupSystem.Services.TeacherManagement;
+using CourseSignupSystem.Services.UploadServices;
 using CourseSignupSystem.Services.VacationManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -94,6 +97,9 @@ builder.Services.AddScoped<IScoreManagementService, ScoreManagementSerive>();
 builder.Services.AddScoped<IVacationManagementService, VacationManagementService>();
 builder.Services.AddScoped<IRevenueManagementSerive, RevenueManagementService>();
 builder.Services.AddScoped<IPermissionManagementService, PermissionManagementService>();
+builder.Services.AddScoped<IUploadService, UploadService>();
+builder.Services.AddScoped<IScheduleManagementService, ScheduleManagementService>();  
+builder.Services.AddScoped<IAnotherService, AnotherService>();
 #endregion
 
 var app = builder.Build();

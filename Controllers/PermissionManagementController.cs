@@ -52,9 +52,9 @@ namespace CourseSignupSystem.Controllers
             return NoContent();
         }
         [HttpGet("RolePermissionList")]
-        public async Task<IActionResult> GetRolePermissionListAsync(string UserId)
+        public async Task<IActionResult> GetRolePermissionListAsync(string RoleId)
         {
-            var result = await _repo.RolePermissionList(UserId);
+            var result = await _repo.RolePermissionList(RoleId);
             return Ok(result);
         }
     }

@@ -4,6 +4,7 @@ using CourseSignupSystem.ContextData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSignupSystem.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    partial class CourseContextModelSnapshot : ModelSnapshot
+    [Migration("20240201104441_Update1.2")]
+    partial class Update12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,8 +35,8 @@ namespace CourseSignupSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DayOfWeek")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
 
                     b.Property<string>("DepartmentId")
                         .HasColumnType("nvarchar(450)");
@@ -2445,7 +2447,7 @@ namespace CourseSignupSystem.Migrations
                         new
                         {
                             SubjectId = "NOTSET_SUBJECT",
-                            CreatedDate = new DateTime(2024, 2, 1, 18, 0, 45, 794, DateTimeKind.Local).AddTicks(2535),
+                            CreatedDate = new DateTime(2024, 2, 1, 17, 44, 40, 161, DateTimeKind.Local).AddTicks(8278),
                             FacultyId = "NOTSET_FACULTY",
                             SubjectName = "Chưa set-up môn học"
                         });
@@ -2584,7 +2586,7 @@ namespace CourseSignupSystem.Migrations
                         {
                             UserId = "ADMIN0001",
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 2, 1, 18, 0, 45, 793, DateTimeKind.Local).AddTicks(6497),
+                            CreatedDate = new DateTime(2024, 2, 1, 17, 44, 40, 161, DateTimeKind.Local).AddTicks(2293),
                             Email = "Admin@gmail.com",
                             FirstName = "Quản trị viên",
                             Image = "",
@@ -2592,7 +2594,7 @@ namespace CourseSignupSystem.Migrations
                             NumberPhone = "0798222837",
                             RoleId = "QTV01",
                             Sex = 1,
-                            UpdateDate = new DateTime(2024, 2, 1, 18, 0, 45, 793, DateTimeKind.Local).AddTicks(6504),
+                            UpdateDate = new DateTime(2024, 2, 1, 17, 44, 40, 161, DateTimeKind.Local).AddTicks(2300),
                             UserName = "Admin",
                             UserPassword = "Admin01"
                         });

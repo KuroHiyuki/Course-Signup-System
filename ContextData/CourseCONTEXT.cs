@@ -17,6 +17,7 @@ namespace CourseSignupSystem.ContextData
         #region Dbcontext Enities
         public virtual DbSet<Class>? Classes { get; set; }
         public virtual DbSet<Class_Program>? Class_Programs { get; set; }
+        public virtual DbSet<Class_Schedule>? Class_Schedules { get; set; }
         public virtual DbSet<Class_Subject>? Class_Subjects { get; set; }
         public virtual DbSet<Class_Room>? Class_Rooms { get; set; }
         public virtual DbSet<Department>? Departments { get; set; }
@@ -168,6 +169,23 @@ namespace CourseSignupSystem.ContextData
                      .HasForeignKey(d => d.RoomId)
                      .OnDelete(DeleteBehavior.ClientSetNull)
                      .HasConstraintName("FK_Room_Class");
+            });
+            modelBuilder.Entity<Class_Schedule>(Entity =>
+            {
+                Entity.ToTable("R_Class_Schedule");
+                Entity.HasKey(k => new { k.ScheduleId, k.ClassId });
+
+                Entity.HasOne(d => d.GetClass)
+                     .WithMany(p => p.Co_Class_Schedules)
+                     .HasForeignKey(d => d.ClassId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Class_Schedule");
+
+                Entity.HasOne(d => d.GetSchedule)
+                     .WithMany(p => p.Co_Class_Schedules)
+                     .HasForeignKey(d => d.ScheduleId)
+                     .OnDelete(DeleteBehavior.ClientSetNull)
+                     .HasConstraintName("FK_Schedule_Class");
             });
             modelBuilder.Entity<Role_Permission>(Entity =>
             {
