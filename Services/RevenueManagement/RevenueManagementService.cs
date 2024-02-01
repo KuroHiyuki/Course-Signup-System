@@ -36,7 +36,8 @@ namespace CourseSignupSystem.Services.RevenueManagement
                     var Data = await _context.Student_Classes!
                         .Include(s => s.GetClass)
                         .ThenInclude(a => a!.GetFee)
-                        .Where(w => w.PaymentDate.Day == dateTime.Day)
+                        .Include(b => b.GetUser)
+                        .Where(w => w.PaymentDate.Day == dateTime.Day&& w.IsPayment ==true && dateTime.Year != 0001)
                         .ToArrayAsync();
                     var Data_sort = _mapper.Map<List<RevenueListDTO>>(Data);
                     foreach (var item in Data_sort)
@@ -97,6 +98,8 @@ namespace CourseSignupSystem.Services.RevenueManagement
                 var teacher = await _context.Users!
                     .Include(e => e.Co_Salary)
                     .Include(d => d.Co_Teacher_Class)
+                    .ThenInclude(a => a.GetClass)
+                    .ThenInclude(c => c!.GetFee)
                     .Where(st => st.RoleId == "GV01")
                     .ToArrayAsync() ?? throw new Exception("Bad request");
                 return _mapper.Map<List<TeacherSalaryListDTO>>(teacher);
@@ -127,8 +130,8 @@ namespace CourseSignupSystem.Services.RevenueManagement
             try
             {
                 var salary = _mapper.Map<Salary>(model);
-                salary.ClassId = salary.GetUser!.Co_Teacher_Class.FirstOrDefault(ds => ds.UserId == salary.UserId)!.ClassId;
-
+                salary.ClassId = model.ClassId;
+                
                 _context.Salaries!.Add(salary!);
                 await _context.SaveChangesAsync();
 
@@ -155,5 +158,6 @@ namespace CourseSignupSystem.Services.RevenueManagement
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }

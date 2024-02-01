@@ -149,8 +149,8 @@ namespace CourseSignupSystem.Services.StudentManagement
                 var student = await _context.Class_Schedules!
                     .Include(a => a.GetSchedule)
                     .Include(o => o.GetClass)
-                    .ThenInclude(b => b!.Co_Teacher_Class)
-                    .Where(d => d.GetClass!.Co_Teacher_Class.FirstOrDefault(df => df.ClassId == d.ClassId)!.UserId == UserId)
+                    .ThenInclude(b => b!.Co_Student_Class)
+                    .Where(d => d.GetClass!.Co_Student_Class.FirstOrDefault(df => df.ClassId == d.ClassId)!.UserId == UserId)
                     .ToListAsync();
                 return _mapper.Map<List<StudentScheduleDTO>>(student);
             }
@@ -160,7 +160,7 @@ namespace CourseSignupSystem.Services.StudentManagement
             }
         }
 
-        public async Task FeePaid(string UserId, string ClassId, FeePaidDTO model)
+        public async Task FeePaid(string UserId, string ClassId)
         {
             try
             {

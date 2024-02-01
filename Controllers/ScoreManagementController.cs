@@ -1,5 +1,6 @@
 ﻿using CourseSignupSystem.Services.ScoreManagement;
 using CourseSignupSystem.Services.ScoreManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
@@ -8,6 +9,7 @@ namespace CourseSignupSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Quản trị viên, Bộ phân Kế Toán, Bộ phận ghi danh, Ban giám đốc")]
     public class ScoreManagementController : ControllerBase
     {
         private readonly IScoreManagementService _repo;

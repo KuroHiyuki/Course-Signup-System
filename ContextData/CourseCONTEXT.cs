@@ -241,7 +241,7 @@ namespace CourseSignupSystem.ContextData
             modelBuilder.Entity<Student_Score>(Entity =>
             {
                 Entity.ToTable("R_Student_Score");
-                Entity.HasKey(k => new { k.UserId, k.SubjectId });
+                
 
                 Entity.HasOne(d => d.GetUser)
                      .WithMany(p => p.Co_Student_Score)

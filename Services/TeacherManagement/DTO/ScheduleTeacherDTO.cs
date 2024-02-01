@@ -1,4 +1,6 @@
-﻿namespace CourseSignupSystem.Services.TeacherManagement.DTO
+﻿using CourseSignupSystem.Enumerables;
+
+namespace CourseSignupSystem.Services.TeacherManagement.DTO
 {
     public class ScheduleTeacherDTO
     {

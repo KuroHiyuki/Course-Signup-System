@@ -11,6 +11,7 @@ namespace CourseSignupSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _repo;

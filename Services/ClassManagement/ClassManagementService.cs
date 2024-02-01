@@ -206,13 +206,64 @@ namespace CourseSignupSystem.Services.ClassManagement
                 throw new Exception(ex.Message);
             }
         }
-        public Task AddScore()
+
+        public async Task AddScoreOfStudent(AddScoreOfStudentDTO model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var newScore = new Student_Score
+                {
+                    MarkId = Guid.NewGuid().ToString(),
+                    UserId = model.UserId,
+                    SubjectId = model.SubjectId,
+                    ScoreId = model.ScoreId,
+                    Score = (decimal)(model.Score!),
+                    IsTerminal = false,
+                    UpdateDate = DateTime.Now,
+                };
+                
+                _context.Add(newScore);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex )
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        public Task ListScoreOfClass()
+
+        public async Task UpdateScoreOfStudent(UpdateScoreDTO model, string? MarkId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var mark = await _context.Student_Scores!.FindAsync(MarkId);
+                mark!.Score = (decimal)(model.Score != (decimal)0 ? model.Score : mark.Score)!;
+                mark.IsTerminal = model.IsTerminal != false;
+                _context.Student_Scores.Update(mark);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<ListScoreOFStudentDTO>> ListScoreOfClass(string ClassId)
+        {
+            try
+            {
+                var classes = await _context.Student_Scores!
+                    .Include(a => a.GetUser)
+                    .ThenInclude(af => af!.Co_Student_Class)
+                    .Include(b => b.GetScore)
+                    .Include(c => c.GetSubject)
+                    .Where(dt => dt.GetUser!.Co_Student_Class.FirstOrDefault(da => da.UserId == dt.UserId)!.GetClass!.ClassId ==ClassId)
+                    .ToListAsync();
+                return _mapper.Map<List<ListScoreOFStudentDTO>>(classes);
+            }
+            catch (Exception ex )
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

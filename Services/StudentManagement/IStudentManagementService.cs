@@ -12,6 +12,6 @@ namespace CourseSignupSystem.Services.StudentManagement
         public Task EnrollmentAsync(EnrollmentDTO model);
         public Task UpdateStudentAsync(string UserId,RUDStudentDTO model);
         public Task DeleteStudentAsync(string UserId);
-        public Task FeePaid(string UserId, string ClassId, FeePaidDTO model);
+        public Task FeePaid(string UserId, string ClassId);
     }
 }

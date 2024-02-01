@@ -10,6 +10,5 @@ namespace CourseSignupSystem.Services.RevenueManagement
         public Task<List<PaySlipDTO>> PaySlipList();
         public Task AddPaySlip( RUDPaySlipDTO model);
         public Task UpdatePaySlip(string UserId, string ClassId, RUDPaySlipDTO model);
-
     }
 }

@@ -58,5 +58,11 @@ namespace CourseSignupSystem.Controllers
             var result = await _repo.TimeTableStudentAsync(userId);
             return Ok(result);
         }
+        [HttpPut("FeePaid")]
+        public async Task<IActionResult> FeePaidAsync(string UserId, string ClassId)
+        {
+            await _repo.FeePaid(UserId, ClassId);
+            return NoContent();
+        }
     }
 }

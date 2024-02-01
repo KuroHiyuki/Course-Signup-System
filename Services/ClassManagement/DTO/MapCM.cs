@@ -17,6 +17,14 @@ namespace CourseSignupSystem.Services.ClassManagement.DTO
             CreateMap<User,StudentOfClassListDTO>()
                 .ForMember(des => des.IsPayment, act => act.MapFrom(src => src.Co_Student_Class.FirstOrDefault( fi=> fi.UserId == src.UserId)!.IsPayment))
                 .ReverseMap();
+            CreateMap<Student_Score, AddScoreOfStudentDTO>().ReverseMap();
+            CreateMap<Student_Score, UpdateScoreDTO>().ReverseMap();
+            CreateMap<Student_Score, ListScoreOFStudentDTO>()
+                .ForMember(des => des.StudentName, act => act.MapFrom(src => src.GetUser!.FirstName + " " + src.GetUser!.LastName))
+                .ForMember(des => des.ScoreName, act => act.MapFrom(src => src.GetScore!.ScoreName))
+                .ForMember(des => des.Score, act => act.MapFrom(src => src.Score))
+                .ForMember(des => des.MarkId, act => act.MapFrom(src => src.MarkId))
+                .ReverseMap();
         }
     }
 }

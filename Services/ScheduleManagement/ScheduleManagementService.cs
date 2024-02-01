@@ -29,6 +29,7 @@ namespace CourseSignupSystem.Services.ScheduleManagement
                 {
                     throw new Exception("Please fill out this field.");
                 }
+
                 var Class_Subject = new Class_Subject
                 {
                     ClassId = model.ClassId,

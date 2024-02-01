@@ -1,5 +1,6 @@
 ﻿using CourseSignupSystem.Services.RevenueManagement;
 using CourseSignupSystem.Services.RevenueManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace CourseSignupSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Quản trị viên, Bộ phân Kế Toán, Bộ phận ghi danh, Ban giám đốc")]
     public class RevenueManagementController : ControllerBase
     {
         private readonly IRevenueManagementSerive _repo;
