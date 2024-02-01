@@ -52,5 +52,11 @@ namespace CourseSignupSystem.Controllers
             await _repo.EnrollmentAsync(model);
             return NoContent();
         }
+        [HttpGet("StudentSchedule")]
+        public async Task<IActionResult> GetStudentScheduleAsync(string userId)
+        {
+            var result = await _repo.TimeTableStudentAsync(userId);
+            return Ok(result);
+        }
     }
 }

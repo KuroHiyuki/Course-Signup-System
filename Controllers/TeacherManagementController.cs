@@ -39,5 +39,11 @@ namespace CourseSignupSystem.Controllers
             await _repo.DeleteTeacherAsync(UserId);
             return NoContent();
         }
+        [HttpGet("TeacherSchedule")]
+        public async Task<IActionResult> GetTeacherScheduleAsync(string UserId)
+        {
+            var result = await _repo.TimeTableTeacherAsync(UserId);
+            return Ok(result);
+        }
     }
 }

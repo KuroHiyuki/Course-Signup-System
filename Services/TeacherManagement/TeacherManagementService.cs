@@ -119,9 +119,23 @@ namespace CourseSignupSystem.Services.TeacherManagement
                 throw new Exception(ex.Message);
             }
         }
-        public Task TimeTableTeacherAsync()
+
+        public async Task<List<ScheduleTeacherDTO>> TimeTableTeacherAsync(string? UserId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var teacher = await _context.Class_Schedules!
+                    .Include(a => a.GetSchedule)
+                    .Include(o => o.GetClass)
+                    .ThenInclude(b => b!.Co_Teacher_Class)
+                    .Where(d => d.GetClass!.Co_Teacher_Class.FirstOrDefault(df => df.ClassId == d.ClassId)!.UserId == UserId)
+                    .ToListAsync();
+                return _mapper.Map<List<ScheduleTeacherDTO>>(teacher);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

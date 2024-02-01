@@ -2,6 +2,7 @@
 using CourseSignupSystem.ContextData;
 using CourseSignupSystem.Models;
 using CourseSignupSystem.Services.StudentManagement.DTOs;
+using CourseSignupSystem.Services.TeacherManagement.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace CourseSignupSystem.Services.StudentManagement
@@ -140,9 +141,39 @@ namespace CourseSignupSystem.Services.StudentManagement
                 throw new Exception(ex.Message);
             }
         }
-        public Task TimeTableStudentAsync()
+
+        public async Task<List<StudentScheduleDTO>> TimeTableStudentAsync(string? UserId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var student = await _context.Class_Schedules!
+                    .Include(a => a.GetSchedule)
+                    .Include(o => o.GetClass)
+                    .ThenInclude(b => b!.Co_Teacher_Class)
+                    .Where(d => d.GetClass!.Co_Teacher_Class.FirstOrDefault(df => df.ClassId == d.ClassId)!.UserId == UserId)
+                    .ToListAsync();
+                return _mapper.Map<List<StudentScheduleDTO>>(student);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task FeePaid(string UserId, string ClassId, FeePaidDTO model)
+        {
+            try
+            {
+                var paid = await _context.Student_Classes!.FirstOrDefaultAsync(dt => dt.ClassId == ClassId && dt.UserId == UserId) ?? throw new Exception($"The Student Id {UserId}does't enroll this class {ClassId}");
+                paid.PaymentDate = DateTime.Now;
+                paid.IsPayment = true;
+                _context.Student_Classes!.Update(paid);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
